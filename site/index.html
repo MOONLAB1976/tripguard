@@ -41,6 +41,36 @@
       gap: 12px;
       margin-top: 20px;
     }
+    .release-box {
+      margin-top: 20px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .release-title {
+      margin: 0 0 12px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .release-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .release-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .release-label {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+    }
     .btn {
       display: inline-block;
       padding: 14px 18px;
@@ -79,6 +109,23 @@
     <section class="hero">
       <h1>TripGuard</h1>
       <p>Centro simples para consultar a versao atual, descarregar a app e publicar novas atualizacoes.</p>
+      <div class="release-box">
+        <div class="release-title">Ultima Atualizacao</div>
+        <div class="release-grid">
+          <div>
+            <div class="release-value" id="release-version">0.1.1</div>
+            <div class="release-label">Versao</div>
+          </div>
+          <div>
+            <div class="release-value" id="release-build">2</div>
+            <div class="release-label">Build</div>
+          </div>
+          <div>
+            <div class="release-value" id="release-date">2026-07-03 14:15</div>
+            <div class="release-label">Data</div>
+          </div>
+        </div>
+      </div>
       <div class="actions">
         <a class="btn btn-primary" href="https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk">Descarregar APK</a>
         <a class="btn btn-secondary" href="https://raw.githubusercontent.com/MOONLAB1976/tripguard/master/tripguard-update.json">Ver JSON de update</a>
@@ -101,5 +148,23 @@
       </article>
     </section>
   </div>
+  <script>
+    fetch("./tripguard-update.json")
+      .then(function (response) {
+        if (!response.ok) throw new Error("update json unavailable");
+        return response.json();
+      })
+      .then(function (data) {
+        var version = document.getElementById("release-version");
+        var build = document.getElementById("release-build");
+        var date = document.getElementById("release-date");
+        if (version && data.versionName) version.textContent = data.versionName;
+        if (build && typeof data.versionCode !== "undefined") build.textContent = data.versionCode;
+        if (date && data.publishedAt) date.textContent = data.publishedAt;
+      })
+      .catch(function () {
+        // Fallback values remain visible if JSON is unavailable.
+      });
+  </script>
 </body>
 </html>
