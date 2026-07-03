@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TripGuard Updates</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --card: #fffaf3;
+      --ink: #18212b;
+      --muted: #5f6b76;
+      --accent: #116466;
+      --accent-2: #d97d54;
+      --line: #dfd2c3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: radial-gradient(circle at top, #fffdf8, var(--bg));
+      color: var(--ink);
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #fffaf3, #f3e5d4);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(24, 33, 43, 0.08);
+    }
+    h1 { margin: 0 0 12px; font-size: 42px; }
+    p { color: var(--muted); line-height: 1.5; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-secondary { background: white; color: var(--ink); border-color: var(--line); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+    code {
+      background: #f1e8dd;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>TripGuard</h1>
+      <p>Centro simples para consultar a versao atual, descarregar a app e publicar novas atualizacoes.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="../releases/latest/download/TripGuard-latest.apk">Descarregar APK</a>
+        <a class="btn btn-secondary" href="../raw/main/tripguard-update.json">Ver JSON de update</a>
+        <a class="btn btn-secondary" href="../issues/new">Criar projeto novo</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Atualizacao da App</h2>
+        <p>Publica o ficheiro <code>TripGuard-latest.apk</code> em GitHub Releases e atualiza o <code>tripguard-update.json</code>.</p>
+      </article>
+      <article class="card">
+        <h2>Relatorios</h2>
+        <p>A app pode enviar os diagnosticos automaticamente para uma pasta ligada. Depois o PC organiza tudo.</p>
+      </article>
+      <article class="card">
+        <h2>Novo Projeto</h2>
+        <p>O botao “Criar projeto novo” pode apontar para Issues, Discussions ou para outro site teu, conforme preferires.</p>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TripGuard</string>
+    <string name="accessibility_service_name">TripGuard Leitor de Ofertas</string>
+    <string name="intro_text">Base leve para Android que le o ecra da Uber e Bolt, analisa as ultimas 10 ofertas e ajuda a decidir aceitar ou recusar.</string>
+    <string name="menu_preview_label">Estrutura prevista</string>
+    <string name="open_accessibility">Abrir acessibilidade</string>
+    <string name="open_overlay">Abrir permissao do overlay</string>
+    <string name="refresh_status">Atualizar estado</string>
+    <string name="last_offer_label">Ultima oferta lida</string>
+    <string name="last_decision_label">Ultima decisao</string>
+    <string name="manual_action_label">Botao manual de aceitar ou recusar</string>
+    <string name="analysis_label">Insights das ultimas 10 ofertas</string>
+    <string name="history_label">Historico recente capturado</string>
+    <string name="no_offer_seen">Ainda nao foi lida nenhuma oferta.</string>
+    <string name="no_decision_yet">Ainda nao foi guardada nenhuma decisao.</string>
+    <string name="no_manual_action_yet">Ainda nao foi usado o botao manual.</string>
+    <string name="no_history_yet">Ainda nao existe historico guardado.</string>
+    <string name="summary_template">Codigos postais bloqueados: %1$s\nTarifa minima: %2$.2f EUR\nMinimo de retorno: %3$.2f EUR/km\nMinimo por hora: %4$.2f EUR/h\nMaximo de recolha: %5$.1f km</string>
+    <string name="menu_preview_text">Inicio\n- cartao vivo da oferta com Aceitar e Recusar sempre visiveis\n- ultima oferta lida e decisao atual\n- estado rapido da acessibilidade e do overlay\n\nOfertas\n- ultimas 10 ofertas da Uber e Bolt\n- correcoes manuais\n- historico por plataforma\n\nInsights\n- media de tarifa\n- media de recolha e de viagem\n- media de EUR/km e EUR/h\n- melhores e piores codigos postais\n- sugestoes de zonas a bloquear\n\nZonas\n- bloqueio de Gaia e outros codigos postais\n- regras de recolha e destino\n- lista manual de permitir ou negar\n\nConselho IA\n- leitura do padrao das ultimas 10 ofertas\n- avisos de rentabilidade baixa\n- sugestoes para apertar ou aliviar filtros\n\nDefinicoes\n- permissoes\n- overlay\n- regras futuras de aceitacao automatica</string>
+</resources>
