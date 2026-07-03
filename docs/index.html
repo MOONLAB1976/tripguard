@@ -57,6 +57,34 @@
       gap: 16px;
       margin-top: 20px;
     }
+    .install-box {
+      margin-top: 18px;
+      background: #18212b;
+      color: white;
+      border-radius: 20px;
+      padding: 22px;
+    }
+    .install-box p {
+      color: #d7e0e8;
+      margin: 8px 0 0;
+    }
+    .steps {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .step {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-2);
+    }
     .card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -78,18 +106,42 @@
   <div class="wrap">
     <section class="hero">
       <h1>TripGuard</h1>
-      <p>Centro simples para consultar a versao atual, descarregar a app e publicar novas atualizacoes.</p>
+      <p>Pagina simples para instalar a app, descarregar a versao mais recente e acompanhar atualizacoes.</p>
       <div class="actions">
         <a class="btn btn-primary" href="https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk">Descarregar APK</a>
         <a class="btn btn-secondary" href="https://raw.githubusercontent.com/MOONLAB1976/tripguard/master/tripguard-update.json">Ver JSON de update</a>
         <a class="btn btn-secondary" href="https://github.com/MOONLAB1976/tripguard/issues/new">Criar projeto novo</a>
+      </div>
+
+      <div class="install-box">
+        <h2 style="margin:0;">Instalar a App pelo Site</h2>
+        <p>No telemovel, abre esta pagina e carrega em <strong style="color:white;display:inline;">Descarregar APK</strong>. Depois abre o ficheiro descarregado e confirma a instalacao.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <strong>1. Abrir no telemovel</strong>
+          Abre este site no Chrome ou noutro browser Android.
+        </div>
+        <div class="step">
+          <strong>2. Descarregar</strong>
+          Carrega no botao <code>Descarregar APK</code>.
+        </div>
+        <div class="step">
+          <strong>3. Instalar</strong>
+          Abre o ficheiro em Downloads e aceita a instalacao.
+        </div>
+        <div class="step">
+          <strong>4. Atualizar</strong>
+          Quando houver versao nova, descarrega outra vez por este mesmo site.
+        </div>
       </div>
     </section>
 
     <section class="grid">
       <article class="card">
         <h2>Atualizacao da App</h2>
-        <p>Publica o ficheiro <code>TripGuard-latest.apk</code> em GitHub Releases e atualiza o <code>tripguard-update.json</code>.</p>
+        <p>O link principal aponta sempre para o <code>TripGuard-latest.apk</code> mais recente no GitHub Releases.</p>
       </article>
       <article class="card">
         <h2>Relatorios</h2>
@@ -97,7 +149,7 @@
       </article>
       <article class="card">
         <h2>Novo Projeto</h2>
-        <p>O botao "Criar projeto novo" pode apontar para Issues, Discussions ou para outro site teu, conforme preferires.</p>
+        <p>O botao "Criar projeto novo" abre uma issue no GitHub para registar novas ideias, erros ou pedidos.</p>
       </article>
     </section>
   </div>
