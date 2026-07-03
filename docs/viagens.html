@@ -3,151 +3,705 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mystro Viagens Results</title>
+  <title>Mystro Viagens Insights</title>
   <style>
     :root {
-      --bg: #f4efe7;
-      --card: #fffaf3;
-      --ink: #18212b;
-      --muted: #5f6b76;
-      --accent: #116466;
-      --accent-2: #d97d54;
-      --line: #dfd2c3;
+      --bg: #0b1220;
+      --bg-2: #101a2c;
+      --card: #1a2437;
+      --card-2: #202d45;
+      --ink: #eef4ff;
+      --muted: #99a8c4;
+      --line: rgba(255, 255, 255, 0.08);
+      --green: #2fd267;
+      --green-2: #1c8c42;
+      --yellow: #f4be2c;
+      --orange: #ff922e;
+      --red: #ff4f5e;
+      --pill: rgba(255, 255, 255, 0.08);
+      --glow: 0 24px 70px rgba(0, 0, 0, 0.35);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, sans-serif;
-      background: radial-gradient(circle at top, #fffdf8, var(--bg));
       color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(47, 210, 103, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(60, 130, 255, 0.14), transparent 35%),
+        linear-gradient(180deg, #08101d 0%, #0d1627 100%);
     }
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 20px 60px; }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
     .hero, .card {
-      background: var(--card);
+      background: linear-gradient(180deg, rgba(35, 49, 74, 0.95), rgba(24, 35, 55, 0.98));
       border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(24, 33, 43, 0.08);
+      border-radius: 28px;
+      box-shadow: var(--glow);
     }
-    .hero { padding: 28px; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+    .hero { padding: 26px; }
+    .eyebrow {
+      color: #7ce89d;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.05;
+    }
+    .hero p {
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.5;
+      margin: 14px 0 0;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
     .btn {
-      display:inline-block; padding:14px 18px; border-radius:14px; text-decoration:none;
-      font-weight:700; border:1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.04);
     }
-    .btn-primary { background: var(--accent); color:white; }
-    .btn-secondary { background:white; color:var(--ink); border-color:var(--line); }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:16px; margin-top:20px; }
-    .card { padding:20px; }
-    h1 { margin:0 0 12px; font-size:42px; }
-    h2 { margin-top:0; font-size:20px; }
-    p, li { color:var(--muted); line-height:1.5; }
-    .value { font-size:28px; font-weight:700; color:var(--ink); }
-    .label { margin-top:4px; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
-    .table { width:100%; border-collapse: collapse; margin-top:12px; }
-    .table th, .table td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--line); font-size:14px; }
-    .table th { color: var(--accent-2); }
-    code { background:#f1e8dd; padding:2px 6px; border-radius:6px; }
+    .btn.primary {
+      background: linear-gradient(135deg, #ff6a3d, #ff8f61);
+      border-color: transparent;
+    }
+    .stats {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+    }
+    .stat {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+    }
+    .stat .value {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .stat .label {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .section {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card {
+      padding: 22px;
+      grid-column: span 12;
+    }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+    .subtle {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .bar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      align-items: end;
+      gap: 14px;
+      min-height: 220px;
+      margin-top: 14px;
+    }
+    .bar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .bar-value {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .bar {
+      width: 100%;
+      max-width: 56px;
+      border-radius: 16px 16px 10px 10px;
+      min-height: 36px;
+      background: var(--red);
+    }
+    .bar.yellow { background: var(--yellow); }
+    .bar.green { background: var(--green); }
+    .bar.darkgreen { background: var(--green-2); }
+    .bar-label {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .insight {
+      margin-top: 14px;
+      color: #7ce89d;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    .heatmap {
+      display: grid;
+      grid-template-columns: 80px repeat(7, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 16px;
+      align-items: stretch;
+    }
+    .heatmap .head,
+    .heatmap .row-label {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      min-height: 40px;
+    }
+    .cell {
+      border-radius: 16px;
+      min-height: 78px;
+      padding: 12px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 800;
+      font-size: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .cell small {
+      display: block;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 600;
+      margin-top: 5px;
+    }
+    .cell.na {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .cell.baixo { background: rgba(255, 79, 94, 0.95); }
+    .cell.fraco { background: rgba(255, 146, 46, 0.95); }
+    .cell.medio { background: rgba(244, 190, 44, 0.95); color: #1e2330; }
+    .cell.bom { background: rgba(47, 210, 103, 0.95); color: #0d1a15; }
+    .cell.excelente { background: rgba(28, 140, 66, 0.95); }
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+    .legend .excelente::before { background: var(--green-2); }
+    .legend .bom::before { background: var(--green); }
+    .legend .medio::before { background: var(--yellow); }
+    .legend .fraco::before { background: var(--orange); }
+    .legend .baixo::before { background: var(--red); }
+    .period-list, .duel, .filter-list, .trip-list {
+      display: grid;
+      gap: 12px;
+    }
+    .period-item, .duel-row, .filter-item, .trip-item, .zone-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+    .period-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .period-main strong,
+    .duel-row strong,
+    .trip-item strong {
+      display: block;
+      font-size: 18px;
+    }
+    .period-main span,
+    .duel-row span,
+    .trip-item span,
+    .filter-item span,
+    .zone-item span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .period-metric {
+      text-align: right;
+      font-size: 22px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .duel {
+      grid-template-columns: 1fr 1fr;
+    }
+    .duel-row strong { margin-bottom: 6px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--pill);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+    .quality-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .quality-bar div {
+      min-height: 18px;
+      border-radius: 999px;
+    }
+    .quality-meta {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .rank-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .trip-item strong {
+      margin-bottom: 4px;
+    }
+    .trip-metrics {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .trip-metrics b {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .filters-grid, .zones-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .zone-list {
+      display: grid;
+      gap: 10px;
+    }
+    .zone-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    @media (max-width: 980px) {
+      .span-6, .span-4, .span-8 { grid-column: span 12; }
+      .duel, .rank-grid, .filters-grid, .zones-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .heatmap {
+        grid-template-columns: 62px repeat(7, minmax(38px, 1fr));
+        gap: 6px;
+      }
+      .cell {
+        min-height: 70px;
+        font-size: 18px;
+        border-radius: 14px;
+      }
+      .bar-grid {
+        gap: 10px;
+        min-height: 170px;
+      }
+      .bar { max-width: 38px; }
+      .quality-meta { grid-template-columns: 1fr; text-align: left; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>Mystro Viagens</h1>
-      <p>Painel publico de resultados das viagens analisadas no PC, com foco em horas, dias, zonas e filtros práticos para Bolt e Uber.</p>
+      <div class="eyebrow">Mystro Viagens</div>
+      <h1>Insights das propostas analisadas no PC</h1>
+      <p>Leitura rápida para perceber que dias, horas e plataformas compensam mais, com foco em rentabilidade por quilómetro, valor por hora e propostas que mais valem a pena aceitar.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="./index.html">Voltar ao site</a>
-        <a class="btn btn-secondary" href="./data/mystro-viagens-results.json">Ver JSON dos resultados</a>
+        <a class="btn primary" href="./index.html">Voltar ao site</a>
+        <a class="btn" href="./data/mystro-viagens-results.json">Ver JSON dos resultados</a>
       </div>
-      <div class="grid" id="top-grid"></div>
+      <div class="stats" id="overview-stats"></div>
     </section>
 
-    <section class="grid" style="margin-top:20px;">
-      <article class="card">
-        <h2>Melhores Dias por Hora</h2>
-        <table class="table" id="best-days"></table>
+    <section class="section">
+      <article class="card span-6">
+        <h2>Melhor dia da semana</h2>
+        <div class="bar-grid" id="best-day-bars"></div>
+        <div class="insight" id="best-day-insight"></div>
       </article>
-      <article class="card">
-        <h2>Melhores Horas por Hora</h2>
-        <table class="table" id="best-hours"></table>
-      </article>
-    </section>
 
-    <section class="grid" style="margin-top:20px;">
-      <article class="card">
-        <h2>Filtros Bolt</h2>
-        <table class="table" id="filters-bolt"></table>
-      </article>
-      <article class="card">
-        <h2>Filtros Uber</h2>
-        <table class="table" id="filters-uber"></table>
+      <article class="card span-6">
+        <h2>Melhor hora para conduzir</h2>
+        <div class="period-list" id="best-period-list"></div>
+        <div class="insight" id="best-period-insight"></div>
       </article>
     </section>
 
-    <section class="grid" style="margin-top:20px;">
-      <article class="card">
-        <h2>Zonas Fortes Bolt</h2>
-        <table class="table" id="zones-bolt"></table>
+    <section class="section">
+      <article class="card span-8">
+        <h2>Quando trabalhas melhor</h2>
+        <div class="subtle">€/km médio por dia e período do dia</div>
+        <div class="heatmap" id="heatmap"></div>
+        <div class="legend">
+          <span class="excelente">Excelente</span>
+          <span class="bom">Bom</span>
+          <span class="medio">Médio</span>
+          <span class="fraco">Fraco</span>
+          <span class="baixo">Baixo</span>
+        </div>
+        <div class="insight" id="heatmap-insight"></div>
       </article>
+
+      <article class="card span-4">
+        <h2>Uber vs Bolt</h2>
+        <div class="duel" id="comparison"></div>
+        <div class="pill" id="comparison-insight"></div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="card span-4">
+        <h2>Qualidade das propostas</h2>
+        <div class="quality-bar" id="quality-bar"></div>
+        <div class="quality-meta" id="quality-meta"></div>
+      </article>
+
+      <article class="card span-4">
+        <h2>Distância de recolha</h2>
+        <div class="period-list" id="pickup-card"></div>
+      </article>
+
+      <article class="card span-4">
+        <h2>Filtros rápidos</h2>
+        <div class="filter-list" id="quick-filters"></div>
+      </article>
+    </section>
+
+    <section class="section">
       <article class="card">
-        <h2>Zonas Fortes Uber</h2>
-        <table class="table" id="zones-uber"></table>
+        <h2>Top 5 melhores e piores propostas</h2>
+        <div class="subtle">Ranking ordenado por rentabilidade €/km, com limpeza básica para retirar duplicados e leituras OCR demasiado extremas.</div>
+        <div class="rank-grid" id="rankings"></div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="card">
+        <h2>Zonas mais fortes</h2>
+        <div class="zones-grid" id="zones"></div>
       </article>
     </section>
   </div>
 
   <script>
-    function currency(v) { return v == null ? '-' : v.toFixed(2) + ' EUR'; }
-    function metric(v, unit) { return v == null ? '-' : v + ' ' + unit; }
-    function table(el, headers, rows) {
-      el.innerHTML = '<thead><tr>' + headers.map(h => '<th>' + h + '</th>').join('') + '</tr></thead>' +
-        '<tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody>';
+    const weekdayOrder = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
+    const periodOrder = ["Madr.", "Manha", "Tarde", "Noite"];
+
+    function fmtNumber(value, digits = 2) {
+      if (value == null || Number.isNaN(value)) return "-";
+      return Number(value).toFixed(digits).replace(".", ",");
     }
 
-    fetch('./data/mystro-viagens-results.json')
-      .then(r => r.json())
+    function eurKm(value) {
+      return value == null ? "-" : `${fmtNumber(value)} €/km`;
+    }
+
+    function eurHour(value) {
+      return value == null ? "-" : `${fmtNumber(value)} €/h`;
+    }
+
+    function km(value) {
+      return value == null ? "-" : `${fmtNumber(value, 1)} km`;
+    }
+
+    function mins(value) {
+      return value == null ? "-" : `${Math.round(value)} min`;
+    }
+
+    function qualityClass(value) {
+      if (value == null) return "na";
+      if (value >= 0.7) return "excelente";
+      if (value >= 0.55) return "bom";
+      if (value >= 0.45) return "medio";
+      if (value >= 0.35) return "fraco";
+      return "baixo";
+    }
+
+    function statCard(label, value) {
+      return `<div class="stat"><div class="value">${value}</div><div class="label">${label}</div></div>`;
+    }
+
+    function renderOverview(data) {
+      const stats = document.getElementById("overview-stats");
+      stats.innerHTML = [
+        statCard("Propostas válidas", data.overview.ok_total ?? "-"),
+        statCard("Linhas limpas", data.overview.rows_used_after_cleaning ?? "-"),
+        statCard("Capturas", data.archive.totalImages ?? "-"),
+        statCard("Apps detetadas", data.archive.appCount ?? "-"),
+        statCard("Início", data.overview.first_seen || "-"),
+        statCard("Fim", data.overview.last_seen || "-"),
+      ].join("");
+    }
+
+    function renderBestDay(bestDay) {
+      const barsEl = document.getElementById("best-day-bars");
+      const insightEl = document.getElementById("best-day-insight");
+      const values = bestDay.bars.map(item => item.avg_eur_per_km || 0);
+      const max = Math.max(...values, 0.01);
+
+      barsEl.innerHTML = bestDay.bars.map(item => {
+        const height = Math.max(36, Math.round((item.avg_eur_per_km || 0) / max * 150));
+        let klass = "bar";
+        if (bestDay.winner && item.label === bestDay.winner.label) klass = "bar darkgreen";
+        else if ((item.avg_eur_per_km || 0) >= 0.55) klass = "bar green";
+        else if ((item.avg_eur_per_km || 0) >= 0.45) klass = "bar yellow";
+        return `
+          <div class="bar-wrap">
+            <div class="bar-value">${fmtNumber(item.avg_eur_per_km)}</div>
+            <div class="${klass}" style="height:${height}px"></div>
+            <div class="bar-label">${item.label}</div>
+          </div>
+        `;
+      }).join("");
+
+      if (bestDay.winner) {
+        insightEl.textContent = `${bestDay.winner.label} tem as melhores propostas, com média de ${fmtNumber(bestDay.winner.avg_eur_per_km)} €/km e ${bestDay.winner.trip_count} propostas.`;
+      }
+    }
+
+    function renderBestPeriod(bestPeriod) {
+      const list = document.getElementById("best-period-list");
+      const insightEl = document.getElementById("best-period-insight");
+      list.innerHTML = bestPeriod.periods.map(item => `
+        <div class="period-item">
+          <div class="period-main">
+            <strong>${item.label}</strong>
+            <span>${item.trip_count} propostas analisadas</span>
+          </div>
+          <div class="period-metric">${fmtNumber(item.avg_eur_per_km)} €/km</div>
+        </div>
+      `).join("");
+      if (bestPeriod.winner) {
+        insightEl.textContent = `O melhor período histórico é ${bestPeriod.winner.label}, com ${fmtNumber(bestPeriod.winner.avg_eur_per_km)} €/km e ${fmtNumber(bestPeriod.winner.avg_eur_per_hour)} €/h.`;
+      }
+    }
+
+    function renderHeatmap(heatmap) {
+      const container = document.getElementById("heatmap");
+      const insightEl = document.getElementById("heatmap-insight");
+      let html = `<div class="head"></div>${weekdayOrder.map(day => `<div class="head">${day}</div>`).join("")}`;
+      heatmap.rows.forEach(row => {
+        html += `<div class="row-label">${row.period}</div>`;
+        row.cells.forEach(cell => {
+          const klass = qualityClass(cell.avg_eur_per_km);
+          html += `
+            <div class="cell ${klass}">
+              <div>
+                ${cell.avg_eur_per_km == null ? "-" : fmtNumber(cell.avg_eur_per_km)}
+                <small>${cell.trip_count || 0} prop.</small>
+              </div>
+            </div>
+          `;
+        });
+      });
+      container.innerHTML = html;
+
+      if (heatmap.best_cell) {
+        insightEl.textContent = `${heatmap.best_cell.weekday_label} ${heatmap.best_cell.period_label} lidera com ${fmtNumber(heatmap.best_cell.avg_eur_per_km)} €/km e ${heatmap.best_cell.trip_count} propostas.`;
+      }
+    }
+
+    function renderComparison(comparison) {
+      const container = document.getElementById("comparison");
+      const insight = document.getElementById("comparison-insight");
+      const platforms = [
+        ["Uber", comparison.uber],
+        ["Bolt", comparison.bolt],
+      ];
+      container.innerHTML = platforms.map(([label, row]) => `
+        <div class="duel-row">
+          <strong>${label}</strong>
+          <span>${eurKm(row?.avg_eur_per_km)}<br>${eurHour(row?.avg_eur_per_hour)}<br>${row?.trip_count ?? "-"} propostas</span>
+        </div>
+      `).join("");
+
+      const winnerKm = comparison.winner_eur_per_km === "bolt" ? "Bolt" : "Uber";
+      const winnerHour = comparison.winner_eur_per_hour === "bolt" ? "Bolt" : "Uber";
+      insight.textContent = `${winnerKm} ganha em €/km e ${winnerHour} ganha em €/h.`;
+    }
+
+    function renderQuality(quality) {
+      const bar = document.getElementById("quality-bar");
+      const meta = document.getElementById("quality-meta");
+      const colors = {
+        excelente: "var(--green-2)",
+        bom: "var(--green)",
+        medio: "var(--yellow)",
+        fraco: "var(--orange)",
+        baixo: "var(--red)",
+      };
+      bar.innerHTML = quality.bands.map(item => `<div style="background:${colors[item.band]}; flex:${Math.max(item.count, 1)}"></div>`).join("");
+      meta.innerHTML = quality.bands.map(item => `
+        <div>
+          <strong>${item.share_pct}%</strong><br>
+          <span>${item.band}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderPickup(pickup) {
+      const container = document.getElementById("pickup-card");
+      container.innerHTML = `
+        <div class="period-item">
+          <div class="period-main">
+            <strong>Recolha média</strong>
+            <span>Distância média até ao passageiro</span>
+          </div>
+          <div class="period-metric">${km(pickup.avg_pickup_km)}</div>
+        </div>
+        <div class="period-item">
+          <div class="period-main">
+            <strong>Distância total média</strong>
+            <span>Recolha + viagem do cliente</span>
+          </div>
+          <div class="period-metric">${km(pickup.avg_total_km)}</div>
+        </div>
+      `;
+    }
+
+    function renderQuickFilters(filters) {
+      const container = document.getElementById("quick-filters");
+      const entries = [
+        ["Bolt Noite", filters.bolt?.["22:00-07:00"]],
+        ["Bolt Tarde", filters.bolt?.["12:00-18:00"]],
+        ["Uber Manhã", filters.uber?.["07:00-12:00"]],
+        ["Uber Noite", filters.uber?.["22:00-07:00"]],
+      ].filter(([, row]) => !!row);
+
+      container.innerHTML = entries.map(([label, row]) => `
+        <div class="filter-item">
+          <strong>${label}</strong>
+          <span>Min ${fmtNumber(row.recommended_min_fare_eur)} € | ${fmtNumber(row.recommended_min_eur_per_hour)} €/h | ${fmtNumber(row.recommended_min_eur_per_km)} €/km | recolha máx ${fmtNumber(row.recommended_max_pickup_km, 1)} km</span>
+        </div>
+      `).join("");
+    }
+
+    function tripCard(title, list) {
+      return `
+        <div>
+          <h3 style="margin:0 0 12px;">${title}</h3>
+          <div class="trip-list">
+            ${list.map(item => `
+              <div class="trip-item">
+                <strong>${item.platform?.toUpperCase() || "-"} • ${fmtNumber(item.price_eur)} €</strong>
+                <span>${item.captured_at || "-"} | ${item.pickup_zone || "-"} → ${item.destination_zone || "-"}</span>
+                <div class="trip-metrics">
+                  <b>${eurKm(item.eur_per_km)}</b>
+                  <b>${eurHour(item.eur_per_hour)}</b>
+                  <b>${mins(item.total_minutes)}</b>
+                  <b>${km(item.total_km)}</b>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRankings(rankings) {
+      const container = document.getElementById("rankings");
+      container.innerHTML = [
+        tripCard("5 melhores propostas", rankings.best || []),
+        tripCard("5 piores propostas", rankings.worst || []),
+      ].join("");
+    }
+
+    function zoneColumn(title, list) {
+      return `
+        <div>
+          <h3 style="margin:0 0 12px;">${title}</h3>
+          <div class="zone-list">
+            ${list.map(item => `
+              <div class="zone-item">
+                <strong>${item.pickup_zone} • ${item.time_bucket}</strong>
+                <span>${item.trip_count} propostas | ${fmtNumber(item.avg_eur_per_hour)} €/h | ${fmtNumber(item.avg_eur_per_km)} €/km | recolha média ${fmtNumber(item.avg_pickup_km, 1)} km</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderZones(zones) {
+      const container = document.getElementById("zones");
+      container.innerHTML = [
+        zoneColumn("Bolt", zones.bolt || []),
+        zoneColumn("Uber", zones.uber || []),
+      ].join("");
+    }
+
+    fetch("./data/mystro-viagens-results.json")
+      .then(response => response.json())
       .then(data => {
-        const top = document.getElementById('top-grid');
-        const archive = data.archive || {};
-        const platform = data.profit.platform_summary || [];
-        top.innerHTML = [
-          ['Capturas', archive.totalImages],
-          ['Apps detectadas', archive.appCount],
-          ['Linhas limpas', data.profit.rows_used_after_cleaning],
-          ['Periodo', (data.profit.date_range?.first || '-') + ' ate ' + (data.profit.date_range?.last || '-')],
-          ['Bolt medio', (platform.find(x => x.platform === 'bolt')?.avg_eur_per_hour || '-') + ' EUR/h'],
-          ['Uber medio', (platform.find(x => x.platform === 'uber')?.avg_eur_per_hour || '-') + ' EUR/h'],
-        ].map(item => `<div class="card"><div class="value">${item[1]}</div><div class="label">${item[0]}</div></div>`).join('');
-
-        table(
-          document.getElementById('best-days'),
-          ['Plataforma', 'Dia', 'Viagens', 'EUR/h', 'EUR/km'],
-          (data.profit.best_weekdays_by_eur_per_hour || []).map(r => [r.platform, r.weekday, r.trip_count, r.avg_eur_per_hour, r.avg_eur_per_km])
-        );
-        table(
-          document.getElementById('best-hours'),
-          ['Plataforma', 'Hora', 'Viagens', 'EUR/h', 'EUR/km'],
-          (data.profit.best_hours_by_eur_per_hour || []).map(r => [r.platform, r.hour + ':00', r.trip_count, r.avg_eur_per_hour, r.avg_eur_per_km])
-        );
-
-        const fb = data.filters.bolt || {};
-        const fu = data.filters.uber || {};
-        table(document.getElementById('filters-bolt'),
-          ['Faixa', 'Min EUR/h', 'Min EUR/km', 'Pickup max'],
-          Object.entries(fb).map(([k,v]) => [k, v.recommended_min_eur_per_hour, v.recommended_min_eur_per_km, v.recommended_max_pickup_km + ' km'])
-        );
-        table(document.getElementById('filters-uber'),
-          ['Faixa', 'Min EUR/h', 'Min EUR/km', 'Pickup max'],
-          Object.entries(fu).map(([k,v]) => [k, v.recommended_min_eur_per_hour, v.recommended_min_eur_per_km, v.recommended_max_pickup_km + ' km'])
-        );
-
-        table(document.getElementById('zones-bolt'),
-          ['Zona', 'Faixa', 'Viagens', 'EUR/h', 'EUR/km'],
-          (data.zones.bolt || []).map(r => [r.pickup_zone, r.time_bucket, r.trip_count, r.avg_eur_per_hour, r.avg_eur_per_km])
-        );
-        table(document.getElementById('zones-uber'),
-          ['Zona', 'Faixa', 'Viagens', 'EUR/h', 'EUR/km'],
-          (data.zones.uber || []).map(r => [r.pickup_zone, r.time_bucket, r.trip_count, r.avg_eur_per_hour, r.avg_eur_per_km])
-        );
+        renderOverview(data);
+        renderBestDay(data.best_day);
+        renderBestPeriod(data.best_period);
+        renderHeatmap(data.heatmap);
+        renderComparison(data.comparison);
+        renderQuality(data.quality);
+        renderPickup(data.pickup);
+        renderQuickFilters(data.filters);
+        renderRankings(data.rankings);
+        renderZones(data.zones);
       });
   </script>
 </body>
