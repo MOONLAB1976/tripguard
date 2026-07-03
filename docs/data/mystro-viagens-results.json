@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-07-03 16:01:57",
+  "generatedAt": "2026-07-03 19:01:33",
   "archive": {
-    "generatedAt": "2026-07-03 16:01:57",
+    "generatedAt": "2026-07-03 19:01:33",
     "sourceDir": "E:\\Claude\\Mystro Viagens\\data\\trip_images_archive",
-    "totalImages": 7267,
-    "totalSizeGb": 2.5,
+    "totalImages": 7360,
+    "totalSizeGb": 2.52,
     "firstCapturedAt": "2025-10-19 22:17:55",
-    "lastCapturedAt": "2026-07-03 03:26:52",
+    "lastCapturedAt": "2026-07-03 11:26:26",
     "appCount": 25,
-    "portraitCount": 3858,
+    "portraitCount": 3951,
     "landscapeCount": 2,
     "squareCount": 0
   },
   "overview": {
-    "processed_total": 3310,
-    "ok_total": 1698,
-    "rows_used_after_cleaning": 1613,
+    "processed_total": 3403,
+    "ok_total": 1754,
+    "rows_used_after_cleaning": 1666,
     "first_seen": "2026-04-15 14:35:34",
-    "last_seen": "2026-07-03 03:26:52"
+    "last_seen": "2026-07-03 11:26:26"
   },
   "comparison": {
     "bolt": {
@@ -35,16 +35,16 @@
     },
     "uber": {
       "platform": "uber",
-      "trip_count": 679,
-      "avg_price_eur": 4.91,
-      "avg_pickup_minutes": 6.62,
-      "avg_pickup_km": 3.13,
-      "avg_trip_minutes": 13.51,
-      "avg_trip_km": 6.79,
-      "avg_total_minutes": 20.14,
-      "avg_total_km": 9.92,
-      "avg_eur_per_km": 0.548,
-      "avg_eur_per_hour": 14.82
+      "trip_count": 732,
+      "avg_price_eur": 5.07,
+      "avg_pickup_minutes": 6.65,
+      "avg_pickup_km": 3.23,
+      "avg_trip_minutes": 13.57,
+      "avg_trip_km": 6.89,
+      "avg_total_minutes": 20.22,
+      "avg_total_km": 10.12,
+      "avg_eur_per_km": 0.553,
+      "avg_eur_per_hour": 15.16
     },
     "winner_eur_per_km": "uber",
     "winner_eur_per_hour": "bolt"
@@ -53,9 +53,9 @@
     "winner": {
       "weekday": "Thursday",
       "label": "Qui",
-      "trip_count": 403,
-      "avg_eur_per_km": 0.562,
-      "avg_eur_per_hour": 16.509
+      "trip_count": 432,
+      "avg_eur_per_km": 0.57,
+      "avg_eur_per_hour": 16.53
     },
     "bars": [
       {
@@ -82,16 +82,16 @@
       {
         "weekday": "Thursday",
         "label": "Qui",
-        "trip_count": 403,
-        "avg_eur_per_km": 0.562,
-        "avg_eur_per_hour": 16.509
+        "trip_count": 432,
+        "avg_eur_per_km": 0.57,
+        "avg_eur_per_hour": 16.53
       },
       {
         "weekday": "Friday",
         "label": "Sex",
-        "trip_count": 409,
-        "avg_eur_per_km": 0.556,
-        "avg_eur_per_hour": 15.217
+        "trip_count": 436,
+        "avg_eur_per_km": 0.555,
+        "avg_eur_per_hour": 15.826
       },
       {
         "weekday": "Saturday",
@@ -156,9 +156,9 @@
             "period_label": "Madrugada (00h-06h)",
             "weekday": "Friday",
             "weekday_label": "Sex",
-            "trip_count": 49,
-            "avg_eur_per_km": 0.499,
-            "avg_eur_per_hour": 18.142
+            "trip_count": 72,
+            "avg_eur_per_km": 0.51,
+            "avg_eur_per_hour": 21.071
           },
           {
             "period": "Madr.",
@@ -225,9 +225,9 @@
             "period_label": "Manha (06h-12h)",
             "weekday": "Friday",
             "weekday_label": "Sex",
-            "trip_count": 28,
-            "avg_eur_per_km": 0.568,
-            "avg_eur_per_hour": 14.551
+            "trip_count": 32,
+            "avg_eur_per_km": 0.565,
+            "avg_eur_per_hour": 14.232
           },
           {
             "period": "Manha",
@@ -285,9 +285,9 @@
             "period_label": "Tarde (12h-18h)",
             "weekday": "Thursday",
             "weekday_label": "Qui",
-            "trip_count": 108,
-            "avg_eur_per_km": 0.565,
-            "avg_eur_per_hour": 13.91
+            "trip_count": 116,
+            "avg_eur_per_km": 0.587,
+            "avg_eur_per_hour": 14.371
           },
           {
             "period": "Tarde",
@@ -354,9 +354,9 @@
             "period_label": "Noite (18h-00h)",
             "weekday": "Thursday",
             "weekday_label": "Qui",
-            "trip_count": 185,
-            "avg_eur_per_km": 0.553,
-            "avg_eur_per_hour": 17.818
+            "trip_count": 206,
+            "avg_eur_per_km": 0.558,
+            "avg_eur_per_hour": 17.569
           },
           {
             "period": "Noite",
@@ -402,74 +402,74 @@
     "winner": {
       "period": "Manha",
       "label": "Manha (06h-12h)",
-      "trip_count": 247,
+      "trip_count": 251,
       "avg_eur_per_km": 0.563,
-      "avg_eur_per_hour": 16.205
+      "avg_eur_per_hour": 16.138
     },
     "periods": [
       {
         "period": "Madr.",
         "label": "Madrugada (00h-06h)",
-        "trip_count": 153,
-        "avg_eur_per_km": 0.495,
-        "avg_eur_per_hour": 18.103
+        "trip_count": 176,
+        "avg_eur_per_km": 0.5,
+        "avg_eur_per_hour": 19.307
       },
       {
         "period": "Manha",
         "label": "Manha (06h-12h)",
-        "trip_count": 247,
+        "trip_count": 251,
         "avg_eur_per_km": 0.563,
-        "avg_eur_per_hour": 16.205
+        "avg_eur_per_hour": 16.138
       },
       {
         "period": "Tarde",
         "label": "Tarde (12h-18h)",
-        "trip_count": 521,
-        "avg_eur_per_km": 0.545,
-        "avg_eur_per_hour": 14.54
+        "trip_count": 529,
+        "avg_eur_per_km": 0.55,
+        "avg_eur_per_hour": 14.631
       },
       {
         "period": "Noite",
         "label": "Noite (18h-00h)",
-        "trip_count": 777,
-        "avg_eur_per_km": 0.499,
-        "avg_eur_per_hour": 16.367
+        "trip_count": 798,
+        "avg_eur_per_km": 0.502,
+        "avg_eur_per_hour": 16.341
       }
     ]
   },
   "quality": {
-    "total": 1698,
+    "total": 1754,
     "bands": [
       {
         "band": "excelente",
-        "count": 284,
-        "share_pct": 16.7
+        "count": 303,
+        "share_pct": 17.3
       },
       {
         "band": "bom",
-        "count": 352,
-        "share_pct": 20.7
+        "count": 369,
+        "share_pct": 21.0
       },
       {
         "band": "medio",
-        "count": 384,
-        "share_pct": 22.6
+        "count": 393,
+        "share_pct": 22.4
       },
       {
         "band": "fraco",
-        "count": 453,
-        "share_pct": 26.7
+        "count": 459,
+        "share_pct": 26.2
       },
       {
         "band": "baixo",
-        "count": 225,
-        "share_pct": 13.3
+        "count": 230,
+        "share_pct": 13.1
       }
     ]
   },
   "pickup": {
-    "avg_pickup_km": 4.082,
-    "avg_total_km": 11.05
+    "avg_pickup_km": 4.104,
+    "avg_total_km": 11.184
   },
   "rankings": {
     "metric": "eur_per_km",
@@ -577,6 +577,26 @@
     ],
     "worst": [
       {
+        "file_name": "PEGGA_UBER_20260702_201456.jpg",
+        "platform": "uber",
+        "captured_at": "2026-07-02 20:14:56",
+        "weekday": "Qui",
+        "period": "Noite",
+        "price_eur": 2.52,
+        "pickup_minutes": 4,
+        "pickup_km": 1.7,
+        "trip_minutes": 26,
+        "trip_km": 27.2,
+        "total_minutes": 30,
+        "total_km": 28.9,
+        "eur_per_km": 0.087,
+        "eur_per_hour": 5.04,
+        "pickup_zone": "Porto",
+        "destination_zone": "<1 km do carregamento rapido",
+        "pickup_address": "Rua do Doutor Roberto Frias, Porto",
+        "destination_address": "Rua das Campinas 156, Paredes 4), <1 km do carregamento rapido"
+      },
+      {
         "file_name": "PEGGA_BOLT_20260508_165043.jpg",
         "platform": "bolt",
         "captured_at": "2026-05-08 16:50:43",
@@ -655,26 +675,6 @@
         "destination_zone": "Ermesinde",
         "pickup_address": "Rua Dona Maria Faria 230, Vila Nova de Gaia 4425-070",
         "destination_address": "R Vista Alegre 64, Ermesinde RA Awa Aw"
-      },
-      {
-        "file_name": "PEGGA_BOLT_20260630_232748.jpg",
-        "platform": "bolt",
-        "captured_at": "2026-06-30 23:27:48",
-        "weekday": "Ter",
-        "period": "Noite",
-        "price_eur": 3.01,
-        "pickup_minutes": 17,
-        "pickup_km": 18.4,
-        "trip_minutes": 5,
-        "trip_km": 2.1,
-        "total_minutes": 22,
-        "total_km": 20.5,
-        "eur_per_km": 0.147,
-        "eur_per_hour": 8.21,
-        "pickup_zone": "Vila Nova de Gaia",
-        "destination_zone": "Vila Nova de Gaia",
-        "pickup_address": "R Nova Alvites 126 BL 4, Vila Nova de Gaia 4400-514",
-        "destination_address": "Mc Donald's, Rua Nova do Fojo 305, Vila Nova de Gaia 4400-232"
       }
     ]
   },
@@ -735,24 +735,24 @@
     },
     "uber": {
       "07:00-12:00": {
-        "trip_count": 93,
-        "avg_fare_eur": 5.05,
-        "avg_eur_per_hour": 14.56,
-        "avg_eur_per_km": 0.57,
-        "avg_pickup_km": 2.13,
+        "trip_count": 97,
+        "avg_fare_eur": 4.96,
+        "avg_eur_per_hour": 14.46,
+        "avg_eur_per_km": 0.569,
+        "avg_pickup_km": 2.15,
         "recommended_min_fare_eur": 3.75,
         "recommended_min_eur_per_hour": 13.5,
         "recommended_min_eur_per_km": 0.5,
         "recommended_max_pickup_km": 2.5,
         "recommended_max_total_minutes": 24,
-        "recommended_max_total_km": 14.0
+        "recommended_max_total_km": 13.5
       },
       "12:00-18:00": {
-        "trip_count": 256,
-        "avg_fare_eur": 5.32,
-        "avg_eur_per_hour": 13.74,
-        "avg_eur_per_km": 0.552,
-        "avg_pickup_km": 3.39,
+        "trip_count": 264,
+        "avg_fare_eur": 5.41,
+        "avg_eur_per_hour": 13.95,
+        "avg_eur_per_km": 0.562,
+        "avg_pickup_km": 3.38,
         "recommended_min_fare_eur": 3.75,
         "recommended_min_eur_per_hour": 13.0,
         "recommended_min_eur_per_km": 0.45,
@@ -761,30 +761,30 @@
         "recommended_max_total_km": 15.0
       },
       "18:00-22:00": {
-        "trip_count": 172,
-        "avg_fare_eur": 4.55,
-        "avg_eur_per_hour": 14.9,
-        "avg_eur_per_km": 0.57,
-        "avg_pickup_km": 2.83,
+        "trip_count": 193,
+        "avg_fare_eur": 4.62,
+        "avg_eur_per_hour": 14.95,
+        "avg_eur_per_km": 0.574,
+        "avg_pickup_km": 2.79,
         "recommended_min_fare_eur": 3.25,
         "recommended_min_eur_per_hour": 13.5,
         "recommended_min_eur_per_km": 0.5,
-        "recommended_max_pickup_km": 3.5,
+        "recommended_max_pickup_km": 3.0,
         "recommended_max_total_minutes": 22,
-        "recommended_max_total_km": 11.0
+        "recommended_max_total_km": 10.5
       },
       "22:00-07:00": {
-        "trip_count": 158,
-        "avg_fare_eur": 4.55,
-        "avg_eur_per_hour": 16.63,
-        "avg_eur_per_km": 0.504,
-        "avg_pickup_km": 3.61,
-        "recommended_min_fare_eur": 3.25,
-        "recommended_min_eur_per_hour": 15.5,
+        "trip_count": 178,
+        "avg_fare_eur": 5.13,
+        "avg_eur_per_hour": 17.57,
+        "avg_eur_per_km": 0.509,
+        "avg_pickup_km": 4.05,
+        "recommended_min_fare_eur": 3.5,
+        "recommended_min_eur_per_hour": 16.0,
         "recommended_min_eur_per_km": 0.4,
-        "recommended_max_pickup_km": 4.0,
-        "recommended_max_total_minutes": 20,
-        "recommended_max_total_km": 13.0
+        "recommended_max_pickup_km": 4.5,
+        "recommended_max_total_minutes": 21,
+        "recommended_max_total_km": 14.5
       }
     }
   },
@@ -883,18 +883,48 @@
     ],
     "uber": [
       {
-        "trip_count": 17,
-        "avg_fare_eur": 5.04,
-        "avg_eur_per_hour": 17.78,
-        "avg_eur_per_km": 0.44,
-        "avg_pickup_km": 6.27,
-        "recommended_min_fare_eur": 4.0,
+        "trip_count": 24,
+        "avg_fare_eur": 6.01,
+        "avg_eur_per_hour": 19.64,
+        "avg_eur_per_km": 0.525,
+        "avg_pickup_km": 4.59,
+        "recommended_min_fare_eur": 3.75,
+        "recommended_min_eur_per_hour": 16.0,
+        "recommended_min_eur_per_km": 0.45,
+        "recommended_max_pickup_km": 4.5,
+        "recommended_max_total_minutes": 20,
+        "recommended_max_total_km": 13.0,
+        "pickup_zone": "Matosinhos",
+        "time_bucket": "22:00-07:00"
+      },
+      {
+        "trip_count": 19,
+        "avg_fare_eur": 5.19,
+        "avg_eur_per_hour": 19.19,
+        "avg_eur_per_km": 0.495,
+        "avg_pickup_km": 6.0,
+        "recommended_min_fare_eur": 4.25,
         "recommended_min_eur_per_hour": 17.5,
         "recommended_min_eur_per_km": 0.35,
-        "recommended_max_pickup_km": 9.0,
+        "recommended_max_pickup_km": 8.5,
         "recommended_max_total_minutes": 21,
         "recommended_max_total_km": 17.0,
         "pickup_zone": "Maia",
+        "time_bucket": "22:00-07:00"
+      },
+      {
+        "trip_count": 117,
+        "avg_fare_eur": 4.89,
+        "avg_eur_per_hour": 16.91,
+        "avg_eur_per_km": 0.51,
+        "avg_pickup_km": 3.59,
+        "recommended_min_fare_eur": 3.25,
+        "recommended_min_eur_per_hour": 16.0,
+        "recommended_min_eur_per_km": 0.4,
+        "recommended_max_pickup_km": 3.5,
+        "recommended_max_total_minutes": 20,
+        "recommended_max_total_km": 13.5,
+        "pickup_zone": "Porto",
         "time_bucket": "22:00-07:00"
       },
       {
@@ -913,49 +943,19 @@
         "time_bucket": "18:00-22:00"
       },
       {
-        "trip_count": 19,
-        "avg_fare_eur": 4.0,
-        "avg_eur_per_hour": 16.6,
-        "avg_eur_per_km": 0.499,
-        "avg_pickup_km": 3.38,
+        "trip_count": 16,
+        "avg_fare_eur": 3.79,
+        "avg_eur_per_hour": 16.25,
+        "avg_eur_per_km": 0.576,
+        "avg_pickup_km": 3.09,
         "recommended_min_fare_eur": 3.25,
-        "recommended_min_eur_per_hour": 15.0,
-        "recommended_min_eur_per_km": 0.45,
-        "recommended_max_pickup_km": 3.5,
-        "recommended_max_total_minutes": 18,
-        "recommended_max_total_km": 10.5,
-        "pickup_zone": "Matosinhos",
-        "time_bucket": "22:00-07:00"
-      },
-      {
-        "trip_count": 13,
-        "avg_fare_eur": 3.57,
-        "avg_eur_per_hour": 16.32,
-        "avg_eur_per_km": 0.561,
-        "avg_pickup_km": 3.12,
-        "recommended_min_fare_eur": 3.0,
         "recommended_min_eur_per_hour": 16.0,
         "recommended_min_eur_per_km": 0.5,
-        "recommended_max_pickup_km": 3.0,
-        "recommended_max_total_minutes": 16,
-        "recommended_max_total_km": 8.0,
+        "recommended_max_pickup_km": 4.0,
+        "recommended_max_total_minutes": 17,
+        "recommended_max_total_km": 8.5,
         "pickup_zone": "Gondomar",
         "time_bucket": "18:00-22:00"
-      },
-      {
-        "trip_count": 104,
-        "avg_fare_eur": 4.42,
-        "avg_eur_per_hour": 16.31,
-        "avg_eur_per_km": 0.516,
-        "avg_pickup_km": 3.1,
-        "recommended_min_fare_eur": 3.25,
-        "recommended_min_eur_per_hour": 15.5,
-        "recommended_min_eur_per_km": 0.4,
-        "recommended_max_pickup_km": 3.5,
-        "recommended_max_total_minutes": 19,
-        "recommended_max_total_km": 11.5,
-        "pickup_zone": "Porto",
-        "time_bucket": "22:00-07:00"
       },
       {
         "trip_count": 22,
