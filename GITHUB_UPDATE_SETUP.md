@@ -8,7 +8,7 @@ Exemplo de `tripguard-update.json`:
 {
   "versionCode": 3,
   "versionName": "0.1.2",
-  "apkUrl": "https://github.com/OWNER/tripguard/releases/latest/download/TripGuard-latest.apk",
+  "apkUrl": "https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk",
   "notes": "Correcao de exportacao e melhorias de estabilidade."
 }
 ```

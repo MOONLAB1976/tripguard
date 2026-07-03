@@ -40,7 +40,7 @@ Podes usar GitHub Pages a partir da branch `main` e pasta `/site`.
 
 ## 5. URL do JSON
 
-Depois de criares o repo, troca `OWNER` em:
+Depois de criares o repo, confirma o utilizador real em:
 
 - `tripguard-update.json`
 - `release/tripguard-update.json`
@@ -48,11 +48,11 @@ Depois de criares o repo, troca `OWNER` em:
 Exemplo:
 
 ```json
-"apkUrl": "https://github.com/teu-utilizador/tripguard/releases/latest/download/TripGuard-latest.apk"
+"apkUrl": "https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk"
 ```
 
 ## 6. URL esperada do site
 
 Se ativares GitHub Pages para `/site`, fica algo como:
 
-`https://teu-utilizador.github.io/tripguard/`
+`https://moonlab1976.github.io/tripguard/`
