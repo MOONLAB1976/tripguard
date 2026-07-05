@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$projectRoot = "E:\Claude\com.mystrodriver\tripguard"
+$projectRoot = $PSScriptRoot
 $repo = "MOONLAB1976/tripguard"
 $appGradle = Join-Path $projectRoot "app\build.gradle.kts"
 $updateJson = Join-Path $projectRoot "tripguard-update.json"
@@ -24,6 +24,7 @@ $versionCode = [int](Get-GradleValue -Path $appGradle -Pattern 'versionCode\s*=\
 $versionName = Get-GradleValue -Path $appGradle -Pattern 'versionName\s*=\s*"([^"]+)"'
 $tag = "v$versionName"
 $apkUrl = "https://github.com/$repo/releases/latest/download/TripGuard-latest.apk"
+$publishedAt = Get-Date -Format "yyyy-MM-dd HH:mm"
 
 Set-Location $projectRoot
 
@@ -37,6 +38,7 @@ $json = @"
 {
   "versionCode": $versionCode,
   "versionName": "$versionName",
+  "publishedAt": "$publishedAt",
   "apkUrl": "$apkUrl",
   "notes": "Versao publicada automaticamente a partir do projeto local."
 }

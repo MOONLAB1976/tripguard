@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-$source = "E:\Claude\com.mystrodriver\tripguard"
-$backupRoot = "E:\Claude\com.mystrodriver\tripguard_backups"
+$source = $PSScriptRoot
+$backupRoot = Join-Path (Split-Path -Parent $PSScriptRoot) "tripguard_backups"
 $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $target = Join-Path $backupRoot $timestamp
 $logFile = Join-Path $backupRoot "backup.log"

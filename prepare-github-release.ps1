@@ -1,4 +1,4 @@
-$projectRoot = "E:\Claude\com.mystrodriver\tripguard"
+$projectRoot = $PSScriptRoot
 $apkSource = Join-Path $projectRoot "app\build\outputs\apk\debug\app-universal-debug.apk"
 $releaseDir = Join-Path $projectRoot "release"
 $apkTarget = Join-Path $releaseDir "TripGuard-latest.apk"

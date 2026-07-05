@@ -18,7 +18,7 @@ Escolhe:
 
 ## 2. Criar o repositório
 
-Dentro de `E:\Claude\com.mystrodriver\tripguard`:
+Dentro de `_publish_tripguard`:
 
 ```powershell
 gh repo create tripguard --public --source=. --remote=origin --push

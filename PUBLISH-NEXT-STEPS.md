@@ -10,7 +10,7 @@ O importante e:
 
 Quando houver uma nova versao:
 
-1. abre a pasta `E:\Claude\com.mystrodriver\tripguard`
+1. abre a pasta `_publish_tripguard`
 2. corre `publish-github-update.ps1`
 3. o script:
    - compila
