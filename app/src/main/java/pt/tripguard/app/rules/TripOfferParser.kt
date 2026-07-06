@@ -64,7 +64,12 @@ object TripOfferParser {
         "fora do alcance"
     )
 
-    private val postalPattern = Regex("""\b(\d{4})(?:-\d{3})?\b""")
+    private val postalPattern = Regex("""\b(\d{4})-(\d{3})\b""")
+    private val shortUberOfferPattern = Regex(
+        """(\d+[.,]\d{2})\s*(?:eur|Ã¢â€šÂ¬|â‚¬)\s*,?\s*((?:(\d+)\s*min)\s*,?\s*)?(\d+[.,]?\d*)\s*km\s*(uberx priority|uberx and share|uber intercity|uber pet|uberx|comfort|conforto|electric|electic|package)?""",
+        RegexOption.IGNORE_CASE
+    )
+    private val addressArrowPattern = Regex("""(.+?)\s*(?:->|→)\s*(.+)""")
     private val bracketDurationKmPattern = Regex(
         """((?:(\d+)\s*h\s*)?(\d+)\s*min\.?)\s*\((\d+[.,]?\d*)\s*km\)""",
         RegexOption.IGNORE_CASE
@@ -116,15 +121,16 @@ object TripOfferParser {
         }
 
         val sourceApp = if (sourceHint == SourceApp.UNKNOWN) detectSourceApp(candidateText) else sourceHint
-        val fare = extractFare(lines, candidateText, sourceApp)
+        val shortUberOffer = if (sourceApp == SourceApp.UBER) parseShortUberOffer(lines, matchText) else null
+        val fare = shortUberOffer?.fare ?: extractFare(lines, candidateText, sourceApp)
         val pickupBlock = durationBlocks.firstOrNull { it.rawLine.normalizeForMatching().contains("de distancia") }
             ?: durationBlocks.firstOrNull { it.rawLine.normalizeForMatching().contains("pickup") }
             ?: durationBlocks.firstOrNull()
         val tripBlock = durationBlocks.firstOrNull { it.rawLine.normalizeForMatching().contains("viagem de") }
             ?: durationBlocks.getOrNull(1)
 
-        val pickupAddress = pickupBlock?.lineIndex?.let { nextAddressAfter(lines, it, null) }
-        val destinationAddress = tripBlock?.lineIndex?.let { nextAddressAfter(lines, it, pickupAddress) }
+        val pickupAddress = shortUberOffer?.pickupAddress ?: pickupBlock?.lineIndex?.let { nextAddressAfter(lines, it, null) }
+        val destinationAddress = shortUberOffer?.destinationAddress ?: tripBlock?.lineIndex?.let { nextAddressAfter(lines, it, pickupAddress) }
 
         if (pickupAddress != null && destinationAddress != null && pickupAddress == destinationAddress) return null
 
@@ -135,8 +141,8 @@ object TripOfferParser {
             if (uberCategoryMarkers.none { matchText.contains(it) }) return null
             if (fare == null || fare < 1.0) return null
             if (!hasActionMarker && !matchText.contains("exclusivo")) return null
-            if (!pickupBlockLooksUber(pickupBlock)) return null
-            if (!tripBlockLooksUber(tripBlock)) return null
+            val hasClassicUberBlocks = pickupBlockLooksUber(pickupBlock) && tripBlockLooksUber(tripBlock)
+            if (!hasClassicUberBlocks && shortUberOffer == null) return null
         }
 
         if (sourceApp == SourceApp.BOLT) {
@@ -145,8 +151,8 @@ object TripOfferParser {
 
         val hasRealOfferSignals = sourceApp != SourceApp.UNKNOWN &&
             fare != null &&
-            pickupBlock != null &&
-            tripBlock != null &&
+            (pickupBlock != null || shortUberOffer?.pickupDistanceKm != null || shortUberOffer?.tripDistanceKm != null) &&
+            (tripBlock != null || shortUberOffer?.tripDistanceKm != null || shortUberOffer?.pickupDistanceKm != null) &&
             pickupAddress != null &&
             destinationAddress != null
 
@@ -156,10 +162,10 @@ object TripOfferParser {
             rawText = candidateText,
             sourceApp = sourceApp,
             fareEur = fare,
-            pickupDurationMin = pickupBlock!!.durationMin,
-            pickupDistanceKm = pickupBlock.distanceKm,
-            tripDurationMin = tripBlock!!.durationMin,
-            tripDistanceKm = tripBlock.distanceKm,
+            pickupDurationMin = pickupBlock?.durationMin ?: shortUberOffer?.pickupDurationMin,
+            pickupDistanceKm = pickupBlock?.distanceKm ?: shortUberOffer?.pickupDistanceKm,
+            tripDurationMin = tripBlock?.durationMin ?: shortUberOffer?.tripDurationMin,
+            tripDistanceKm = tripBlock?.distanceKm ?: shortUberOffer?.tripDistanceKm,
             pickupAddress = pickupAddress,
             destinationAddress = destinationAddress,
             pickupPostalCode = pickupPostalCode,
@@ -208,8 +214,11 @@ object TripOfferParser {
                 line.contains("apos deducao de taxa de servico") ||
                     line.contains("aceitar") ||
                     line.contains("corresponder") ||
+                    line.contains("oportunidade") ||
                     line.contains("viagem de") ||
                     line.contains("de distancia") ||
+                    line.contains("->") ||
+                    line.contains("→") ||
                     uberCategoryMarkers.any { marker -> line.contains(marker) }
             if (!looksRelevant) return@forEach
 
@@ -218,10 +227,13 @@ object TripOfferParser {
             val snippet = lines.subList(start, end + 1).joinToString("\n").trim()
             val normalizedSnippet = snippet.normalizeForMatching()
             if (
-                normalizedSnippet.hasFareMarkers() &&
-                normalizedSnippet.contains("viagem de") &&
-                normalizedSnippet.contains("de distancia") &&
-                uberCategoryMarkers.any { marker -> normalizedSnippet.contains(marker) }
+                (
+                    normalizedSnippet.hasFareMarkers() &&
+                        normalizedSnippet.contains("viagem de") &&
+                        normalizedSnippet.contains("de distancia") &&
+                        uberCategoryMarkers.any { marker -> normalizedSnippet.contains(marker) }
+                    ) ||
+                    looksLikeShortUberSnippet(normalizedSnippet)
             ) {
                 candidates += snippet
             }
@@ -311,6 +323,49 @@ object TripOfferParser {
         return null
     }
 
+    private fun parseShortUberOffer(lines: List<String>, matchText: String): ShortUberOffer? {
+        if (!looksLikeShortUberSnippet(matchText)) return null
+
+        val metricLine = lines.firstOrNull { line ->
+            shortUberOfferPattern.containsMatchIn(line.normalizeForMatching())
+        } ?: return null
+
+        val metricMatch = shortUberOfferPattern.find(metricLine.normalizeForMatching()) ?: return null
+        val fare = metricMatch.groupValues.getOrNull(1)?.normalizeDecimal()?.toDoubleOrNull() ?: return null
+        val durationMin = metricMatch.groupValues.getOrNull(3)?.toDoubleOrNull()
+        val distanceKm = metricMatch.groupValues.getOrNull(4)?.normalizeDecimal()?.toDoubleOrNull() ?: return null
+
+        val arrowPair = lines.firstNotNullOfOrNull(::parseArrowAddresses)
+        val pickupAddress = arrowPair?.first
+        val destinationAddress = arrowPair?.second
+
+        return ShortUberOffer(
+            fare = fare,
+            pickupDurationMin = null,
+            pickupDistanceKm = null,
+            tripDurationMin = durationMin,
+            tripDistanceKm = distanceKm,
+            pickupAddress = pickupAddress,
+            destinationAddress = destinationAddress
+        )
+    }
+
+    private fun parseArrowAddresses(line: String): Pair<String, String>? {
+        val match = addressArrowPattern.find(line) ?: return null
+        val pickup = match.groupValues.getOrNull(1)?.trim().orEmpty()
+        val destination = match.groupValues.getOrNull(2)?.trim().orEmpty()
+        if (!pickup.containsPostalOrStreetShape() || !destination.containsPostalOrStreetShape()) return null
+        return pickup to destination
+    }
+
+    private fun looksLikeShortUberSnippet(normalizedText: String): Boolean {
+        val hasFare = farePatterns.any { it.containsMatchIn(normalizedText) }
+        val hasCategory = uberCategoryMarkers.any { normalizedText.contains(it) }
+        val hasDistance = Regex("""\d+[.,]?\d*\s*km""", RegexOption.IGNORE_CASE).containsMatchIn(normalizedText)
+        val hasArrow = normalizedText.contains("->") || normalizedText.contains("→")
+        return hasFare && hasCategory && (hasArrow || hasDistance)
+    }
+
     private fun detectSourceApp(text: String): SourceApp {
         val lower = text.normalizeForMatching()
         return when {
@@ -330,6 +385,7 @@ object TripOfferParser {
     }
 
     private fun looksLikeUberJourneyCard(lines: List<String>, matchText: String): Boolean {
+        if (looksLikeShortUberSnippet(matchText)) return true
         val lineSignals = lines.count { line ->
             val normalized = line.normalizeForMatching()
             normalized.contains("apos deducao de taxa de servico") ||
@@ -410,9 +466,11 @@ object TripOfferParser {
 
         val bestCandidate = prioritizedCandidates
             .filterNot { it.isSecondary }
+            .filterNot { sourceApp == SourceApp.BOLT && it.normalizedLine.contains("portagem") }
             .maxByOrNull { fareScore(it, sourceApp, fareMarkerIndex) }
             ?: allCandidates
                 .filterNot { it.isSecondary }
+                .filterNot { sourceApp == SourceApp.BOLT && it.normalizedLine.contains("portagem") }
                 .maxByOrNull { fareScore(it, sourceApp, fareMarkerIndex) }
             ?: prioritizedCandidates.maxByOrNull { fareScore(it, sourceApp, fareMarkerIndex) }
 
@@ -443,6 +501,7 @@ object TripOfferParser {
     private fun fareScore(candidate: MoneyCandidate, sourceApp: SourceApp, fareMarkerIndex: Int): Int {
         var score = 0
         if (!candidate.isSecondary) score += 40 else score -= 30
+        if (candidate.amount < 1.0) score -= 50
         if (candidate.amount >= 2.0) score += 15
         if (candidate.amount >= 4.0) score += 8
         if (candidate.amount >= 6.0) score += 4
@@ -513,5 +572,15 @@ object TripOfferParser {
         val lineIndex: Int,
         val normalizedLine: String,
         val isSecondary: Boolean
+    )
+
+    private data class ShortUberOffer(
+        val fare: Double,
+        val pickupDurationMin: Double?,
+        val pickupDistanceKm: Double?,
+        val tripDurationMin: Double?,
+        val tripDistanceKm: Double?,
+        val pickupAddress: String?,
+        val destinationAddress: String?
     )
 }

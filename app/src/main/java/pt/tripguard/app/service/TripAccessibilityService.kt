@@ -232,7 +232,7 @@ class TripAccessibilityService : AccessibilityService() {
                 .edit()
                 .putString(
                     "last_offer_summary",
-                    "App=${offer.sourceApp.name} | Tarifa=${offer.fareEur ?: "?"} EUR | Recolha=${offer.pickupDistanceKm ?: "?"} km | Viagem=${offer.tripDistanceKm ?: "?"} km | ${offer.eurPerKm()?.let { "%.2f".format(it) } ?: "?"} EUR/km | ${offer.eurPerHour()?.let { "%.2f".format(it) } ?: "?"} EUR/h | PickupZone=${offer.pickupPostalCode ?: "?"} | DestZone=${offer.destinationPostalCode ?: "?"}"
+                    buildOfferSummary(offer)
                 )
                 .putString(
                     "last_decision_summary",
@@ -248,6 +248,26 @@ class TripAccessibilityService : AccessibilityService() {
             Log.d(TAG, "Decision ${result.decision} with reasons ${result.reasons}")
         } catch (error: Throwable) {
             recordServiceError("PROCESS", error)
+        }
+    }
+
+    private fun buildOfferSummary(offer: TripOffer): String {
+        fun Double?.fmt(decimals: Int = 1): String =
+            this?.let { "%.${decimals}f".format(it).replace(",", ".") } ?: "?"
+
+        fun Double?.money(): String =
+            this?.let { "%.2f".format(it).replace(",", ".") } ?: "?"
+
+        return buildString {
+            append("App=${offer.sourceApp.name}")
+            append(" | Tarifa=${offer.fareEur.money()} EUR")
+            append(" | Recolha=${offer.pickupDistanceKm.fmt()} km / ${offer.pickupDurationMin.fmt(0)} min")
+            append(" | Viagem=${offer.tripDistanceKm.fmt()} km / ${offer.tripDurationMin.fmt(0)} min")
+            append(" | Total=${offer.totalDistanceKm().fmt()} km / ${offer.totalDurationMin().fmt(0)} min")
+            append(" | ${offer.eurPerKm()?.let { "%.2f".format(it).replace(",", ".") } ?: "?"} EUR/km")
+            append(" | ${offer.eurPerHour()?.let { "%.2f".format(it).replace(",", ".") } ?: "?"} EUR/h")
+            append(" | PickupZone=${offer.pickupPostalCode ?: "?"}")
+            append(" | DestZone=${offer.destinationPostalCode ?: "?"}")
         }
     }
 
@@ -564,6 +584,7 @@ class TripAccessibilityService : AccessibilityService() {
         if (normalized.contains("liquidos, incluindo impostos")) score += 5
         if (normalized.contains("viagem de")) score += 4
         if (normalized.contains("de distancia")) score += 4
+        if (normalized.contains("oportunidade")) score += 4
         if (normalized.contains("aceitar")) score += 3
         if (normalized.contains("corresponder")) score += 3
         if (normalized.contains("exclusivo")) score += 2
@@ -703,8 +724,11 @@ class TripAccessibilityService : AccessibilityService() {
                 normalized.contains("apos deducao de taxa de servico") ||
                     normalized.contains("de distancia") ||
                     normalized.contains("viagem de") ||
+                    normalized.contains("oportunidade") ||
                     normalized.contains("aceitar") ||
                     normalized.contains("corresponder") ||
+                    normalized.contains("->") ||
+                    normalized.contains("→") ||
                     normalized.contains("destino extra") ||
                     normalized.contains("mais de 30 min") ||
                     uberCategoryLabels().any { normalized.contains(it) } ||
@@ -750,17 +774,23 @@ class TripAccessibilityService : AccessibilityService() {
         val hasTripShape =
             normalized.contains("viagem de") ||
                 normalized.contains("de distancia") ||
+                normalized.contains("oportunidade") ||
                 normalized.contains("corresponder") ||
                 normalized.contains("aceitar")
         val hasCategory = uberCategoryLabels().any { normalized.contains(it) }
         val hasDistanceOrTime =
             Regex("""\d+\s*min""", RegexOption.IGNORE_CASE).containsMatchIn(normalized) &&
                 Regex("""\d+[.,]?\d*\s*km""", RegexOption.IGNORE_CASE).containsMatchIn(normalized)
-        return hasFare && (hasTripShape || (hasCategory && hasDistanceOrTime))
+        val hasArrowAddresses = normalized.contains("->") || normalized.contains("→")
+        return hasFare && (hasTripShape || (hasCategory && hasDistanceOrTime) || (hasCategory && hasArrowAddresses))
     }
 
     private fun maybeAttemptUberScreenshotOcr(packageName: String, rawText: String): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return false
+        if (uberOcrInFlight && System.currentTimeMillis() - lastUberOcrAttemptMs > 2500L) {
+            uberOcrInFlight = false
+            DiagnosticsStore(this).append("OCR_RESET", "Uber OCR desbloqueado por timeout")
+        }
         if (uberOcrInFlight) {
             DiagnosticsStore(this).append("OCR_SKIP", "Uber OCR ignorado: pedido anterior ainda em curso")
             return false
@@ -911,7 +941,7 @@ class TripAccessibilityService : AccessibilityService() {
                     .edit()
                     .putString(
                         "last_offer_summary",
-                        "App=${offer.sourceApp.name} | Tarifa=${offer.fareEur ?: "?"} EUR | Recolha=${offer.pickupDistanceKm ?: "?"} km | Viagem=${offer.tripDistanceKm ?: "?"} km | ${offer.eurPerKm()?.let { "%.2f".format(it) } ?: "?"} EUR/km | ${offer.eurPerHour()?.let { "%.2f".format(it) } ?: "?"} EUR/h | PickupZone=${offer.pickupPostalCode ?: "?"} | DestZone=${offer.destinationPostalCode ?: "?"}"
+                        buildOfferSummary(offer)
                     )
                     .putString(
                         "last_decision_summary",
@@ -951,14 +981,22 @@ class TripAccessibilityService : AccessibilityService() {
                 normalized.contains("event_text pkg=com.ubercab.driver") ||
                 normalized.contains("corresponder") ||
                 normalized.contains("aceitar") ||
+                normalized.contains("oportunidade") ||
                 normalized.contains("apos deducao de taxa de servico") ||
                 normalized.contains("exclusivo") ||
                 normalized.contains("mais de 30 min") ||
                 normalized.contains("destino extra") ||
                 uberCategoryLabels().any { normalized.contains(it) }
         val hasTripShape =
-            Regex("""\d+\s*min""", RegexOption.IGNORE_CASE).containsMatchIn(normalized) &&
-                Regex("""\d+[.,]?\d*\s*km""", RegexOption.IGNORE_CASE).containsMatchIn(normalized)
+            (
+                Regex("""\d+\s*min""", RegexOption.IGNORE_CASE).containsMatchIn(normalized) &&
+                    Regex("""\d+[.,]?\d*\s*km""", RegexOption.IGNORE_CASE).containsMatchIn(normalized)
+                ) ||
+                (
+                    uberCategoryLabels().any { normalized.contains(it) } &&
+                        Regex("""\d+[.,]?\d*\s*km""", RegexOption.IGNORE_CASE).containsMatchIn(normalized) &&
+                        (normalized.contains("->") || normalized.contains("→") || normalized.contains("oportunidade"))
+                    )
         val containsFalseForegroundMarkers =
             normalized.contains("google") ||
                 normalized.contains("maps") ||
