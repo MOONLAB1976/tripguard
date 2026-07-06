@@ -54,8 +54,11 @@ git add `
     app\src\main\java\pt\tripguard\app\rules\TripOfferParser.kt `
     app\src\main\java\pt\tripguard\app\service\TripAccessibilityService.kt `
     publish-github-update.ps1 `
+    prepare-github-release.ps1 `
     tripguard-update.json `
+    docs\tripguard-update.json `
     docs\index.html `
+    site\tripguard-update.json `
     site\index.html `
     release\tripguard-update.json
 $pending = git diff --cached --name-only
