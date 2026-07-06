@@ -49,7 +49,15 @@ Write-Host "A preparar ficheiros de release..."
 powershell -ExecutionPolicy Bypass -File (Join-Path $projectRoot "prepare-github-release.ps1") | Out-Host
 
 Write-Host "A enviar alteracoes do repositorio..."
-git add app\build.gradle.kts tripguard-update.json docs\index.html site\index.html release\tripguard-update.json
+git add `
+    app\build.gradle.kts `
+    app\src\main\java\pt\tripguard\app\rules\TripOfferParser.kt `
+    app\src\main\java\pt\tripguard\app\service\TripAccessibilityService.kt `
+    publish-github-update.ps1 `
+    tripguard-update.json `
+    docs\index.html `
+    site\index.html `
+    release\tripguard-update.json
 $pending = git diff --cached --name-only
 if ($pending) {
     git commit -m "Publish TripGuard $versionName" | Out-Host
@@ -59,17 +67,17 @@ if ($pending) {
 }
 
 Write-Host "A publicar APK no GitHub Release..."
-$releaseExists = $true
-try {
-    gh release view $tag --repo $repo | Out-Null
-} catch {
-    $releaseExists = $false
-}
+gh release view $tag --repo $repo *> $null
+$releaseExists = ($LASTEXITCODE -eq 0)
 
 if ($releaseExists) {
     gh release upload $tag $apkPath --repo $repo --clobber | Out-Host
 } else {
     gh release create $tag $apkPath --repo $repo --title "TripGuard $versionName" --notes "Versao $versionName publicada pelo script local." | Out-Host
+}
+
+if ($LASTEXITCODE -ne 0) {
+    throw "Falhou a publicacao da release $tag"
 }
 
 Write-Host ""
