@@ -67,7 +67,7 @@ if ($pending) {
 }
 
 Write-Host "A publicar APK no GitHub Release..."
-gh release view $tag --repo $repo *> $null
+$null = cmd /c "gh release view $tag --repo $repo >NUL 2>NUL"
 $releaseExists = ($LASTEXITCODE -eq 0)
 
 if ($releaseExists) {
