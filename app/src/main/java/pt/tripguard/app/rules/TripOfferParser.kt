@@ -123,11 +123,8 @@ object TripOfferParser {
         val sourceApp = if (sourceHint == SourceApp.UNKNOWN) detectSourceApp(candidateText) else sourceHint
         val shortUberOffer = if (sourceApp == SourceApp.UBER) parseShortUberOffer(lines, matchText) else null
         val fare = shortUberOffer?.fare ?: extractFare(lines, candidateText, sourceApp)
-        val pickupBlock = durationBlocks.firstOrNull { it.rawLine.normalizeForMatching().contains("de distancia") }
-            ?: durationBlocks.firstOrNull { it.rawLine.normalizeForMatching().contains("pickup") }
-            ?: durationBlocks.firstOrNull()
-        val tripBlock = durationBlocks.firstOrNull { it.rawLine.normalizeForMatching().contains("viagem de") }
-            ?: durationBlocks.getOrNull(1)
+        val pickupBlock = selectPickupBlock(sourceApp, durationBlocks)
+        val tripBlock = selectTripBlock(sourceApp, durationBlocks, pickupBlock)
 
         val pickupAddress = shortUberOffer?.pickupAddress ?: pickupBlock?.lineIndex?.let { nextAddressAfter(lines, it, null) }
         val destinationAddress = shortUberOffer?.destinationAddress ?: tripBlock?.lineIndex?.let { nextAddressAfter(lines, it, pickupAddress) }
@@ -257,6 +254,7 @@ object TripOfferParser {
     }
 
     private fun parseDurationDistance(line: String): DurationDistanceBlock? {
+        if (line.looksLikeHelperMetricLine()) return null
         val tripMatch = tripPrefixPattern.find(line)
         if (tripMatch != null) {
             val hours = tripMatch.groupValues.getOrNull(2)?.toDoubleOrNull() ?: 0.0
@@ -348,6 +346,44 @@ object TripOfferParser {
             pickupAddress = pickupAddress,
             destinationAddress = destinationAddress
         )
+    }
+
+    private fun selectPickupBlock(
+        sourceApp: SourceApp,
+        durationBlocks: List<DurationDistanceBlock>
+    ): DurationDistanceBlock? {
+        if (sourceApp == SourceApp.UBER) {
+            return durationBlocks.firstOrNull { block ->
+                val normalized = block.rawLine.normalizeForMatching()
+                normalized.contains("de distancia") && !normalized.contains("total")
+            }
+        }
+
+        return durationBlocks.firstOrNull { block ->
+            val normalized = block.rawLine.normalizeForMatching()
+            normalized.contains("pickup") && !normalized.contains("total")
+        } ?: durationBlocks.firstOrNull { block ->
+            !block.rawLine.looksLikeHelperMetricLine()
+        }
+    }
+
+    private fun selectTripBlock(
+        sourceApp: SourceApp,
+        durationBlocks: List<DurationDistanceBlock>,
+        pickupBlock: DurationDistanceBlock?
+    ): DurationDistanceBlock? {
+        val explicitTrip = durationBlocks.firstOrNull { block ->
+            block !== pickupBlock && block.rawLine.normalizeForMatching().contains("viagem de")
+        }
+        if (explicitTrip != null) return explicitTrip
+
+        if (sourceApp == SourceApp.UBER) {
+            return null
+        }
+
+        return durationBlocks.firstOrNull { block ->
+            block !== pickupBlock && !block.rawLine.looksLikeHelperMetricLine()
+        }
     }
 
     private fun parseArrowAddresses(line: String): Pair<String, String>? {
@@ -551,6 +587,17 @@ object TripOfferParser {
 
     private fun String.hasDurationMarkers(): Boolean =
         contains("viagem de") || contains("de distancia")
+
+    private fun String.looksLikeHelperMetricLine(): Boolean {
+        val normalized = normalizeForMatching()
+        if (normalized.contains("eur/km") || normalized.contains("eur/h")) return true
+        if (normalized.contains("lucro") || normalized.contains("pickup")) return true
+        if (normalized.contains("total") && normalized.contains("km")) return true
+        if (normalized.contains("recolha") || normalized.contains("destino")) return true
+        if (Regex("""\d+[.,]?\d*\s*km\s*[:|]\s*\d+\s*min""").containsMatchIn(normalized)) return true
+        if (Regex("""\d+\s*min\s*[:|]\s*\d+[.,]?\d*\s*km""").containsMatchIn(normalized)) return true
+        return false
+    }
 
     private fun String.normalizeDecimal(): String = replace(",", ".")
 

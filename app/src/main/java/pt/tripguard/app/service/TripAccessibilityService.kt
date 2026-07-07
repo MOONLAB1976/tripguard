@@ -28,6 +28,7 @@ import pt.tripguard.app.rules.TripOfferParser
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import java.util.Locale
 
 class TripAccessibilityService : AccessibilityService() {
     private var windowManager: WindowManager? = null
@@ -355,7 +356,7 @@ class TripAccessibilityService : AccessibilityService() {
         val shouldRefreshSequence =
             pendingForPackage.isNullOrEmpty() ||
                 currentScore >= lastUberScheduleScore ||
-                now - lastUberScheduleAtMs > 600L
+                now - lastUberScheduleAtMs > 350L
 
         if (!shouldRefreshSequence) {
             return
@@ -374,9 +375,9 @@ class TripAccessibilityService : AccessibilityService() {
                     looksPromisingUberSnapshot(eventText) ||
                     currentScore >= 10
             ) {
-                listOf(70L, 170L, 320L, 560L, 900L, 1300L)
+                listOf(35L, 100L, 220L, 420L, 700L, 1050L)
             } else {
-                listOf(160L, 320L, 520L, 820L, 1180L, 1550L)
+                listOf(90L, 180L, 340L, 600L, 950L, 1350L)
             }
 
         delaysMs.forEach { delayMs ->
@@ -1165,16 +1166,38 @@ class TripAccessibilityService : AccessibilityService() {
             setStroke(4, Color.parseColor(tone))
         }
         overlayCloseButton?.text = "Fechar (${overlayDurationSeconds}s)"
-        overlayOfferText?.text =
-            "${offer.sourceApp.name}\n" +
-                "${offer.fareEur ?: "?"} EUR | ${offer.eurPerKm()?.let { "%.2f".format(it) } ?: "?"} EUR/km | ${offer.eurPerHour()?.let { "%.2f".format(it) } ?: "?"} EUR/h"
-        overlayDecisionText?.text =
-            "Recolha ${offer.pickupPostalCode ?: "----"} | Destino ${offer.destinationPostalCode ?: "----"} | Fecha em ${overlayDurationSeconds}s\n$decisionSummary"
+        overlayOfferText?.text = formatOverlayOffer(offer)
+        overlayDecisionText?.text = "Fecha em ${overlayDurationSeconds}s | $decisionSummary"
         lastOverlayOfferApp = offer.sourceApp
         lastOverlayShownAtMs = now
         lastOverlayCompleteness = newCompleteness
         handler.postDelayed(hideOverlayRunnable, overlayDurationSeconds * 1000L)
     }
+
+    private fun formatOverlayOffer(offer: TripOffer): String {
+        val totalDistance = offer.totalDistanceKm()
+        val totalDuration = offer.totalDurationMin()
+        return buildString {
+            append("${offer.sourceApp.name}  ${formatMoney(offer.fareEur)} EUR")
+            append("  |  ${formatMoney(offer.eurPerKm())} EUR/km")
+            append("  |  ${formatMoney(offer.eurPerHour())} EUR/h\n")
+            append("Total: ${formatDistance(totalDistance)} / ${formatDuration(totalDuration)}\n")
+            append("P: ${formatDuration(offer.pickupDurationMin)} - ${formatDistance(offer.pickupDistanceKm)}")
+            offer.pickupPostalCode?.let { append(" ($it)") }
+            append("\n")
+            append("D: ${formatDuration(offer.tripDurationMin)} - ${formatDistance(offer.tripDistanceKm)}")
+            offer.destinationPostalCode?.let { append(" ($it)") }
+        }
+    }
+
+    private fun formatMoney(value: Double?): String =
+        value?.let { String.format(Locale.US, "%.2f", it).replace(".", ",") } ?: "?"
+
+    private fun formatDistance(value: Double?): String =
+        value?.let { "${String.format(Locale.US, "%.1f", it).replace(".", ",")} km" } ?: "? km"
+
+    private fun formatDuration(value: Double?): String =
+        value?.let { "${String.format(Locale.US, "%.0f", it)} min" } ?: "? min"
 
     private fun overlayCompletenessScore(offer: TripOffer): Int {
         var score = 0
