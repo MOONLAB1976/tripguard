@@ -1,0 +1,896 @@
+﻿{
+    "generatedAt":  "2026-07-08 21:50:20",
+    "source":  "TripGuard",
+    "summary":  {
+                    "offers":  1215,
+                    "accepted":  63,
+                    "rejected":  1113,
+                    "review":  39,
+                    "avg_fare_eur":  20.376,
+                    "avg_pickup_km":  5.414,
+                    "avg_trip_km":  9.044,
+                    "avg_eur_per_km":  1.768,
+                    "avg_eur_per_hour":  52.856
+                },
+    "sync":  {
+                 "generated_at":  "2026-07-08 21:50:18",
+                 "reports_total":  123,
+                 "references":  [
+                                    {
+                                        "reference":  "sem-referencia",
+                                        "reports":  123,
+                                        "devices":  [
+                                                        "tg-bb3510ef8e29",
+                                                        "tg-desconhecido"
+                                                    ],
+                                        "latest_at":  "2026-07-08T18:50:50Z"
+                                    }
+                                ],
+                 "devices":  [
+                                 {
+                                     "device_id":  "tg-bb3510ef8e29",
+                                     "label":  "xiaomi 24094rad4g",
+                                     "reports":  15,
+                                     "references":  [
+                                                        "sem-referencia"
+                                                    ],
+                                     "latest_at":  "2026-07-08T18:50:50Z"
+                                 },
+                                 {
+                                     "device_id":  "tg-desconhecido",
+                                     "label":  "desconhecido",
+                                     "reports":  108,
+                                     "references":  [
+                                                        "sem-referencia"
+                                                    ],
+                                     "latest_at":  "2026-07-05 15:14:26"
+                                 }
+                             ],
+                 "latest_reports":  [
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                                            "length":  19376,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 19:51:00",
+                                            "generated_at":  "2026-07-08T18:50:50Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.14 (19)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                                            "length":  19376,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 19:51:00",
+                                            "generated_at":  "2026-07-08T18:50:50Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.14 (19)"
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                                            "length":  19376,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 19:51:00",
+                                            "generated_at":  "2026-07-08T18:50:50Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.14 (19)"
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-164426.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-164426.md",
+                                            "length":  16762,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:44:30",
+                                            "generated_at":  "2026-07-08T16:44:26Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.14 (19)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-164426.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-164426.md",
+                                            "length":  16762,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:44:30",
+                                            "generated_at":  "2026-07-08T16:44:26Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.14 (19)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-164426.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-164426.md",
+                                            "length":  16762,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:44:30",
+                                            "generated_at":  "2026-07-08T16:44:26Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.14 (19)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-163132.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-163132.md",
+                                            "length":  17807,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:31:39",
+                                            "generated_at":  "2026-07-08T16:31:32Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.13 (18)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-163132.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-163132.md",
+                                            "length":  17807,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:31:39",
+                                            "generated_at":  "2026-07-08T16:31:32Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.13 (18)"
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-163132.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-163132.md",
+                                            "length":  17807,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:31:39",
+                                            "generated_at":  "2026-07-08T16:31:32Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.13 (18)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-161913.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-161913.md",
+                                            "length":  18246,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:19:17",
+                                            "generated_at":  "2026-07-08T16:19:13Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.12 (17)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-161913.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-161913.md",
+                                            "length":  18246,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:19:17",
+                                            "generated_at":  "2026-07-08T16:19:13Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.12 (17)"
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-161913.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-161913.md",
+                                            "length":  18246,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:19:17",
+                                            "generated_at":  "2026-07-08T16:19:13Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.12 (17)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-160155.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-160155.md",
+                                            "length":  17991,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:02:00",
+                                            "generated_at":  "2026-07-08T16:01:55Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.11 (16)"
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-160155.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-160155.md",
+                                            "length":  17991,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:02:00",
+                                            "generated_at":  "2026-07-08T16:01:55Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.11 (16)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-160155.md",
+                                            "name":  "tripguard-sem-referencia-tg-bb3510ef8e29-20260708-160155.md",
+                                            "length":  17991,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-08 17:02:00",
+                                            "generated_at":  "2026-07-08T16:01:55Z",
+                                            "device_id":  "tg-bb3510ef8e29",
+                                            "device_label":  "xiaomi 24094rad4g",
+                                            "reference":  "sem-referencia",
+                                            "version":  "0.2.11 (16)"
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard_diagnostico_20260705_151426.txt",
+                                            "name":  "tripguard_diagnostico_20260705_151426.txt",
+                                            "length":  14545,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-05 15:14:26",
+                                            "generated_at":  "2026-07-05 15:14:26",
+                                            "device_id":  "tg-desconhecido",
+                                            "device_label":  "desconhecido",
+                                            "reference":  "sem-referencia",
+                                            "version":  ""
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard_diagnostico_20260705_151426.txt",
+                                            "name":  "tripguard_diagnostico_20260705_151426.txt",
+                                            "length":  14545,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-05 15:14:26",
+                                            "generated_at":  "2026-07-05 15:14:26",
+                                            "device_id":  "tg-desconhecido",
+                                            "device_label":  "desconhecido",
+                                            "reference":  "sem-referencia",
+                                            "version":  ""
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard_diagnostico_20260705_151426.txt",
+                                            "name":  "tripguard_diagnostico_20260705_151426.txt",
+                                            "length":  14545,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-05 15:14:26",
+                                            "generated_at":  "2026-07-05 15:14:26",
+                                            "device_id":  "tg-desconhecido",
+                                            "device_label":  "desconhecido",
+                                            "reference":  "sem-referencia",
+                                            "version":  ""
+                                        },
+                                        {
+                                            "file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard_diagnostico_20260705_141418.txt",
+                                            "name":  "tripguard_diagnostico_20260705_141418.txt",
+                                            "length":  14171,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-05 14:14:18",
+                                            "generated_at":  "2026-07-05 14:14:18",
+                                            "device_id":  "tg-desconhecido",
+                                            "device_label":  "desconhecido",
+                                            "reference":  "sem-referencia",
+                                            "version":  ""
+                                        },
+                                        {
+                                            "file":  "G:\\O meu disco\\TripGuard\\tripguard_diagnostico_20260705_141418.txt",
+                                            "name":  "tripguard_diagnostico_20260705_141418.txt",
+                                            "length":  14171,
+                                            "imported_at":  "2026-07-08 21:50:16",
+                                            "modified_at":  "2026-07-05 14:14:18",
+                                            "generated_at":  "2026-07-05 14:14:18",
+                                            "device_id":  "tg-desconhecido",
+                                            "device_label":  "desconhecido",
+                                            "reference":  "sem-referencia",
+                                            "version":  ""
+                                        }
+                                    ]
+             },
+    "references":  [
+                       {
+                           "reference":  "sem-referencia",
+                           "metrics":  {
+                                           "offers":  1215,
+                                           "accepted":  63,
+                                           "rejected":  1113,
+                                           "review":  39,
+                                           "avg_fare_eur":  20.376,
+                                           "avg_pickup_km":  5.414,
+                                           "avg_trip_km":  9.044,
+                                           "avg_eur_per_km":  1.768,
+                                           "avg_eur_per_hour":  52.856
+                                       }
+                       }
+                   ],
+    "devices":  [
+                    {
+                        "device_id":  "tg-bb3510ef8e29",
+                        "label":  "xiaomi 24094rad4g",
+                        "metrics":  {
+                                        "offers":  150,
+                                        "accepted":  63,
+                                        "rejected":  48,
+                                        "review":  39,
+                                        "avg_fare_eur":  122.346,
+                                        "avg_pickup_km":  5.414,
+                                        "avg_trip_km":  9.044,
+                                        "avg_eur_per_km":  10.616,
+                                        "avg_eur_per_hour":  316.048
+                                    }
+                    },
+                    {
+                        "device_id":  "tg-desconhecido",
+                        "label":  "desconhecido",
+                        "metrics":  {
+                                        "offers":  1065,
+                                        "accepted":  0,
+                                        "rejected":  1065,
+                                        "review":  0,
+                                        "avg_fare_eur":  7.738,
+                                        "avg_pickup_km":  null,
+                                        "avg_trip_km":  null,
+                                        "avg_eur_per_km":  0.671,
+                                        "avg_eur_per_hour":  23.2
+                                    }
+                    }
+                ],
+    "weak_zones":  [
+                       {
+                           "zone":  "3251",
+                           "metrics":  {
+                                           "offers":  84,
+                                           "accepted":  0,
+                                           "rejected":  84,
+                                           "review":  0,
+                                           "avg_fare_eur":  4.92,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.69,
+                                           "avg_eur_per_hour":  21.09
+                                       }
+                       },
+                       {
+                           "zone":  "4475",
+                           "metrics":  {
+                                           "offers":  84,
+                                           "accepted":  0,
+                                           "rejected":  84,
+                                           "review":  0,
+                                           "avg_fare_eur":  8.56,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.55,
+                                           "avg_eur_per_hour":  24.46
+                                       }
+                       },
+                       {
+                           "zone":  "4470",
+                           "metrics":  {
+                                           "offers":  84,
+                                           "accepted":  0,
+                                           "rejected":  84,
+                                           "review":  0,
+                                           "avg_fare_eur":  4.96,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.76,
+                                           "avg_eur_per_hour":  29.76
+                                       }
+                       },
+                       {
+                           "zone":  "4435",
+                           "metrics":  {
+                                           "offers":  81,
+                                           "accepted":  0,
+                                           "rejected":  81,
+                                           "review":  0,
+                                           "avg_fare_eur":  5.11,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.33,
+                                           "avg_eur_per_hour":  18.04
+                                       }
+                       },
+                       {
+                           "zone":  "4150",
+                           "metrics":  {
+                                           "offers":  63,
+                                           "accepted":  0,
+                                           "rejected":  63,
+                                           "review":  0,
+                                           "avg_fare_eur":  4.26,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.55,
+                                           "avg_eur_per_hour":  18.26
+                                       }
+                       },
+                       {
+                           "zone":  "4802",
+                           "metrics":  {
+                                           "offers":  63,
+                                           "accepted":  0,
+                                           "rejected":  63,
+                                           "review":  0,
+                                           "avg_fare_eur":  6.28,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.92,
+                                           "avg_eur_per_hour":  22.16
+                                       }
+                       },
+                       {
+                           "zone":  "4450",
+                           "metrics":  {
+                                           "offers":  63,
+                                           "accepted":  0,
+                                           "rejected":  63,
+                                           "review":  0,
+                                           "avg_fare_eur":  5.18,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.48,
+                                           "avg_eur_per_hour":  18.28
+                                       }
+                       },
+                       {
+                           "zone":  "4400",
+                           "metrics":  {
+                                           "offers":  54,
+                                           "accepted":  0,
+                                           "rejected":  54,
+                                           "review":  0,
+                                           "avg_fare_eur":  4.51,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.54,
+                                           "avg_eur_per_hour":  24.6
+                                       }
+                       },
+                       {
+                           "zone":  "2654",
+                           "metrics":  {
+                                           "offers":  21,
+                                           "accepted":  0,
+                                           "rejected":  21,
+                                           "review":  0,
+                                           "avg_fare_eur":  9.76,
+                                           "avg_pickup_km":  null,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  0.39,
+                                           "avg_eur_per_hour":  15.83
+                                       }
+                       },
+                       {
+                           "zone":  "4300",
+                           "metrics":  {
+                                           "offers":  6,
+                                           "accepted":  3,
+                                           "rejected":  0,
+                                           "review":  3,
+                                           "avg_fare_eur":  25.97,
+                                           "avg_pickup_km":  0.8,
+                                           "avg_trip_km":  null,
+                                           "avg_eur_per_km":  32.46,
+                                           "avg_eur_per_hour":  259.7
+                                       }
+                       }
+                   ],
+    "latest_offers":  [
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  0.8,
+                              "trip_km":  null,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "4300",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  25.97,
+                              "pickup_km":  0.8,
+                              "trip_km":  null,
+                              "eur_per_km":  32.46,
+                              "eur_per_hour":  259.7,
+                              "pickup_zone":  "4300",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  3.45,
+                              "pickup_km":  1.2,
+                              "trip_km":  5,
+                              "eur_per_km":  0.56,
+                              "eur_per_hour":  17.25,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  1.2,
+                              "trip_km":  5,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  3.45,
+                              "pickup_km":  1.2,
+                              "trip_km":  5,
+                              "eur_per_km":  0.56,
+                              "eur_per_hour":  17.25,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "G:\\O meu disco\\TripGuard\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  3.85,
+                              "pickup_km":  1.2,
+                              "trip_km":  4,
+                              "eur_per_km":  0.74,
+                              "eur_per_hour":  14.44,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  0.8,
+                              "trip_km":  null,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "4300",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  25.97,
+                              "pickup_km":  0.8,
+                              "trip_km":  null,
+                              "eur_per_km":  32.46,
+                              "eur_per_hour":  259.7,
+                              "pickup_zone":  "4300",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  3.45,
+                              "pickup_km":  1.2,
+                              "trip_km":  5,
+                              "eur_per_km":  0.56,
+                              "eur_per_hour":  17.25,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  1.2,
+                              "trip_km":  5,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  3.45,
+                              "pickup_km":  1.2,
+                              "trip_km":  5,
+                              "eur_per_km":  0.56,
+                              "eur_per_hour":  17.25,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\Mystro Viagens\\Mystro\\Viagens\\TripGuardSync\\raw_uploads\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  3.85,
+                              "pickup_km":  1.2,
+                              "trip_km":  4,
+                              "eur_per_km":  0.74,
+                              "eur_per_hour":  14.44,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  0.8,
+                              "trip_km":  null,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "4300",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  25.97,
+                              "pickup_km":  0.8,
+                              "trip_km":  null,
+                              "eur_per_km":  32.46,
+                              "eur_per_hour":  259.7,
+                              "pickup_zone":  "4300",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  null,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  null,
+                              "eur_per_hour":  null,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "REVIEW"
+                          },
+                          {
+                              "source_file":  "F:\\Claude\\com.mystrodriver\\tripguard_reports\\inbox\\tripguard-sem-referencia-tg-bb3510ef8e29-20260708-185050.md",
+                              "generated_at":  "2026-07-08T18:50:50Z",
+                              "device_id":  "tg-bb3510ef8e29",
+                              "device_label":  "xiaomi 24094rad4g",
+                              "reference":  "sem-referencia",
+                              "app":  "UBER",
+                              "fare_eur":  6.49,
+                              "pickup_km":  0.8,
+                              "trip_km":  8.7,
+                              "eur_per_km":  0.68,
+                              "eur_per_hour":  18.54,
+                              "pickup_zone":  "----",
+                              "destination_zone":  "----",
+                              "decision":  "ACCEPT"
+                          }
+                      ],
+    "recommendations":  [
+                            {
+                                "priority":  "media",
+                                "title":  "Reduzir distancia de recolha",
+                                "detail":  "A recolha media esta em 5.414 km. Para testar, baixa o limite para 3.5 ou 4.0 km."
+                            },
+                            {
+                                "priority":  "media",
+                                "title":  "Rever zonas fracas",
+                                "detail":  "Zonas com sinal fraco recente: 3251, 4470, 4475, 4435, 4150. Vale testar bloqueio ou limites mais apertados nessas zonas."
+                            }
+                        ]
+}
