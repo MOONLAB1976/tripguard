@@ -3,167 +3,624 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TripGuard Updates</title>
+  <title>TripGuard Dashboard</title>
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f4efe7;
-      --card: #fffaf3;
-      --ink: #18212b;
-      --muted: #5f6b76;
-      --accent: #116466;
-      --accent-2: #d97d54;
-      --line: #dfd2c3;
+      --bg: #090d16;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #22c55e;
+      --error: #ef4444;
+      --warning: #f97316;
+      --accent: #8b5cf6;
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      background: radial-gradient(circle at top, #fffdf8, var(--bg));
-      color: var(--ink);
+      padding: 0;
     }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 0;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
+    }
+
     .wrap {
-      max-width: 980px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 32px 20px 60px;
+      padding: 32px 16px 64px;
     }
-    .hero {
-      background: linear-gradient(135deg, #fffaf3, #f3e5d4);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 20px 50px rgba(24, 33, 43, 0.08);
-    }
-    h1 { margin: 0 0 12px; font-size: 42px; }
-    p { color: var(--muted); line-height: 1.5; }
-    .actions {
+
+    /* Header */
+    header {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .release-box {
-      margin-top: 20px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-    }
-    .release-title {
-      margin: 0 0 12px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-    }
-    .release-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-    }
-    .release-value {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--ink);
-    }
-    .release-label {
-      margin-top: 4px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 18px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid transparent;
-    }
-    .btn-primary { background: var(--accent); color: white; }
-    .btn-secondary { background: white; color: var(--ink); border-color: var(--line); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
-      margin-top: 20px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 24px;
     }
+
+    .brand h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .brand p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .sync-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(17, 24, 39, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .sync-indicator {
+      width: 8px;
+      height: 8px;
+      background-color: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--success);
+    }
+
+    /* Main Grid Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
     .card {
-      background: var(--card);
-      border: 1px solid var(--line);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     }
-    .card h2 {
-      margin-top: 0;
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Hero & Quick Actions */
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: white;
+    }
+
+    .hero-version {
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #93c5fd;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero-desc {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(31, 41, 55, 0.8);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(55, 65, 81, 0.8);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-box {
+      background: rgba(9, 13, 22, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-val.accept { color: var(--success); }
+    .stat-val.reject { color: var(--error); }
+    .stat-val.review { color: var(--warning); }
+
+    /* Performance Stats */
+    .perf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .perf-box {
+      background: rgba(9, 13, 22, 0.3);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .perf-icon {
+      font-size: 28px;
+    }
+
+    .perf-val {
+      font-family: 'Outfit', sans-serif;
       font-size: 20px;
+      font-weight: 700;
     }
-    code {
-      background: #f1e8dd;
+
+    .perf-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Recommendations */
+    .rec-item {
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      background: rgba(59, 130, 246, 0.04);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 12px;
+    }
+
+    .rec-item.alta {
+      border-left-color: var(--error);
+      background: rgba(239, 68, 68, 0.04);
+    }
+
+    .rec-item.media {
+      border-left-color: var(--warning);
+      background: rgba(249, 115, 22, 0.04);
+    }
+
+    .rec-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .rec-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Instructions / Request Panel */
+    .request-box {
+      background: rgba(139, 92, 246, 0.04);
+      border: 1px dashed rgba(139, 92, 246, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .request-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #c084fc;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .request-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* Table styles */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    th {
+      background-color: rgba(17, 24, 39, 0.5);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    tr:hover td {
+      background-color: rgba(31, 41, 55, 0.3);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .badge-accept { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+    .badge-reject { background: rgba(239, 68, 68, 0.15); color: var(--error); }
+    .badge-review { background: rgba(249, 115, 22, 0.15); color: var(--warning); }
+
+    .app-badge {
+      display: inline-block;
       padding: 2px 6px;
-      border-radius: 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
     }
+    .app-uber { background: #000; }
+    .app-bolt { background: #34d399; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <h1>TripGuard</h1>
-      <p>Centro simples para consultar a versao atual, descarregar a app e publicar novas atualizacoes.</p>
-      <div class="release-box">
-        <div class="release-title">Ultima Atualizacao</div>
-        <div class="release-grid">
-          <div>
-            <div class="release-value" id="release-version">0.1.1</div>
-            <div class="release-label">Versao</div>
+    <header>
+      <div class="brand">
+        <h1>TripGuard Dashboard</h1>
+        <p>Acompanhamento e estatísticas das tuas viagens TVDE em tempo real</p>
+      </div>
+      <div class="sync-status">
+        <div class="sync-indicator"></div>
+        <div>Última Sincronização: <span id="sync-time">Carregando...</span></div>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <!-- Left Column: Metrics & Stats -->
+      <div>
+        <div class="card" style="margin-bottom: 24px;">
+          <div class="card-title">Resumo Recente de Capturas</div>
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-val accept" id="stat-accept">--</div>
+              <div class="stat-label">Aceites</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val reject" id="stat-reject">--</div>
+              <div class="stat-label">Rejeitadas</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val review" id="stat-review">--</div>
+              <div class="stat-label">Revisão</div>
+            </div>
           </div>
-          <div>
-            <div class="release-value" id="release-build">2</div>
-            <div class="release-label">Build</div>
+
+          <div class="perf-grid">
+            <div class="perf-box">
+              <div class="perf-icon">💵</div>
+              <div>
+                <div class="perf-val" id="perf-eur-km">-- EUR/km</div>
+                <div class="perf-label">Retorno Médio por Km</div>
+              </div>
+            </div>
+            <div class="perf-box">
+              <div class="perf-icon">⏱️</div>
+              <div>
+                <div class="perf-val" id="perf-eur-hour">-- EUR/h</div>
+                <div class="perf-label">Faturação Média Estimada</div>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="release-value" id="release-date">2026-07-03 17:30</div>
-            <div class="release-label">Data</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Registo Recente de Ofertas (Últimas 25)</div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hora</th>
+                  <th>App</th>
+                  <th>Tarifa</th>
+                  <th>Recolha</th>
+                  <th>Viagem</th>
+                  <th>EUR/km</th>
+                  <th>EUR/h</th>
+                  <th>Zona</th>
+                  <th>Decisão</th>
+                </tr>
+              </thead>
+              <tbody id="offers-body">
+                <tr>
+                  <td colspan="9" style="text-align: center; color: var(--text-muted);">A carregar dados do sincronizador...</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk">Descarregar APK</a>
-        <a class="btn btn-secondary" href="https://raw.githubusercontent.com/MOONLAB1976/tripguard/master/tripguard-update.json">Ver JSON de update</a>
-        <a class="btn btn-secondary" href="https://github.com/MOONLAB1976/tripguard/issues/new">Criar projeto novo</a>
-      </div>
-    </section>
 
-    <section class="grid">
-      <article class="card">
-        <h2>Atualizacao da App</h2>
-        <p>Publica o ficheiro <code>TripGuard-latest.apk</code> em GitHub Releases e atualiza o <code>tripguard-update.json</code>.</p>
-      </article>
-      <article class="card">
-        <h2>Relatorios</h2>
-        <p>A app pode enviar os diagnosticos automaticamente para uma pasta ligada. Depois o PC organiza tudo.</p>
-      </article>
-      <article class="card">
-        <h2>Novo Projeto</h2>
-        <p>O botao “Criar projeto novo” pode apontar para Issues, Discussions ou para outro site teu, conforme preferires.</p>
-      </article>
-    </section>
+      <!-- Right Column: Settings, Recs, Actions -->
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card hero-card">
+          <div class="hero-version">Nova Versão Disponível</div>
+          <div class="hero-title" id="app-version">v--</div>
+          <div class="hero-desc">Basta clicares no botão abaixo para descarregar o instalador atual diretamente para o teu telemóvel.</div>
+          <div class="btn-group">
+            <a class="btn btn-primary" href="https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk">Descarregar APK</a>
+            <a class="btn btn-secondary" href="https://github.com/MOONLAB1976/tripguard" target="_blank">Ver Código</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Recomendações de Otimização</div>
+          <div id="recs-container">
+            <div class="rec-item">
+              <div class="rec-title">A recolher dados...</div>
+              <div class="rec-detail">Aguardando importação de diagnósticos.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Instruções para o Assistente</div>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+            Mesmo quando estás fora de casa no telemóvel, podes enviar novos pedidos e tarefas para o assistente AI (Claude) no teu PC.
+          </p>
+          <div class="request-box">
+            <div class="request-title">1. Ficheiro no Google Drive 📁</div>
+            <div class="request-desc">
+              Cria um ficheiro de texto chamado <code>instrucoes.txt</code> dentro da pasta <strong>TripGuard</strong> no teu Google Drive do telemóvel. O assistente lê este ficheiro automaticamente a cada sincronização!
+            </div>
+          </div>
+          <div class="request-box">
+            <div class="request-title">2. Criar uma Tarefa no GitHub 💬</div>
+            <div class="request-desc">
+              Cria um "Issue" ou tarefa no repositório GitHub para o assistente implementar na próxima execução.
+            </div>
+            <a class="btn btn-secondary" style="width: 100%; margin-top: 8px;" href="https://github.com/MOONLAB1976/tripguard/issues/new" target="_blank">Criar Tarefa no GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <script>
+    // Fetch version from local tripguard-update.json
     fetch("./tripguard-update.json")
-      .then(function (response) {
-        if (!response.ok) throw new Error("update json unavailable");
-        return response.json();
-      })
+      .then(function (r) { return r.json(); })
       .then(function (data) {
-        var version = document.getElementById("release-version");
-        var build = document.getElementById("release-build");
-        var date = document.getElementById("release-date");
-        if (version && data.versionName) version.textContent = data.versionName;
-        if (build && typeof data.versionCode !== "undefined") build.textContent = data.versionCode;
-        if (date && data.publishedAt) date.textContent = data.publishedAt;
+        if (data.versionName) {
+          document.getElementById("app-version").textContent = "v" + data.versionName;
+        }
       })
-      .catch(function () {
-        // Fallback values remain visible if JSON is unavailable.
+      .catch(function(e) { console.error("Failed to read version", e); });
+
+    // Fetch stats and offers from data/tripguard-sync-results.json
+    fetch("./data/tripguard-sync-results.json")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.generatedAt) {
+          document.getElementById("sync-time").textContent = data.generatedAt;
+        }
+
+        // Summary Card
+        if (data.summary) {
+          document.getElementById("stat-accept").textContent = data.summary.accepted || 0;
+          document.getElementById("stat-reject").textContent = data.summary.rejected || 0;
+          document.getElementById("stat-review").textContent = data.summary.review || 0;
+          document.getElementById("perf-eur-km").textContent = (data.summary.avg_eur_per_km ? data.summary.avg_eur_per_km.toFixed(2) : "--") + " EUR/km";
+          document.getElementById("perf-eur-hour").textContent = (data.summary.avg_eur_per_hour ? data.summary.avg_eur_per_hour.toFixed(2) : "--") + " EUR/h";
+        }
+
+        // Recommendations
+        var recsContainer = document.getElementById("recs-container");
+        if (data.recommendations && data.recommendations.length > 0) {
+          recsContainer.innerHTML = "";
+          data.recommendations.forEach(function (rec) {
+            var item = document.createElement("div");
+            item.className = "rec-item " + (rec.priority || "baixa");
+            
+            var title = document.createElement("div");
+            title.className = "rec-title";
+            title.textContent = rec.title || "Sugestão";
+            
+            var detail = document.createElement("div");
+            detail.className = "rec-detail";
+            detail.textContent = rec.detail || "";
+            
+            item.appendChild(title);
+            item.appendChild(detail);
+            recsContainer.appendChild(item);
+          });
+        }
+
+        // Recent Offers Table
+        var offersBody = document.getElementById("offers-body");
+        if (data.latest_offers && data.latest_offers.length > 0) {
+          offersBody.innerHTML = "";
+          data.latest_offers.forEach(function (offer) {
+            var tr = document.createElement("tr");
+
+            // Time column (HH:MM)
+            var tdTime = document.createElement("td");
+            var timeStr = "";
+            if (offer.generated_at) {
+              var matches = offer.generated_at.match(/(\d{2}:\d{2})/);
+              timeStr = matches ? matches[1] : offer.generated_at;
+            }
+            tdTime.textContent = timeStr || "--:--";
+
+            // App column with badge
+            var tdApp = document.createElement("td");
+            var appSpan = document.createElement("span");
+            appSpan.className = "app-badge " + (offer.app === "UBER" ? "app-uber" : "app-bolt");
+            appSpan.textContent = offer.app;
+            tdApp.appendChild(appSpan);
+
+            // Fare column
+            var tdFare = document.createElement("td");
+            tdFare.textContent = offer.fare_eur ? offer.fare_eur.toFixed(2) + " €" : "? €";
+
+            // Pickup column
+            var tdPickup = document.createElement("td");
+            tdPickup.textContent = offer.pickup_km ? offer.pickup_km.toFixed(1) + " km" : "--";
+
+            // Trip column
+            var tdTrip = document.createElement("td");
+            tdTrip.textContent = offer.trip_km ? offer.trip_km.toFixed(1) + " km" : "--";
+
+            // EUR/km column
+            var tdEurKm = document.createElement("td");
+            tdEurKm.textContent = offer.eur_per_km ? offer.eur_per_km.toFixed(2) + " €" : "--";
+
+            // EUR/h column
+            var tdEurHour = document.createElement("td");
+            tdEurHour.textContent = offer.eur_per_hour ? offer.eur_per_hour.toFixed(1) + " €" : "--";
+
+            // Zone column
+            var tdZone = document.createElement("td");
+            tdZone.textContent = offer.pickup_zone || "----";
+
+            // Decision column with badge
+            var tdDecision = document.createElement("td");
+            var decSpan = document.createElement("span");
+            decSpan.className = "badge badge-" + (offer.decision || "review").toLowerCase();
+            decSpan.textContent = offer.decision || "REVIEW";
+            tdDecision.appendChild(decSpan);
+
+            tr.appendChild(tdTime);
+            tr.appendChild(tdApp);
+            tr.appendChild(tdFare);
+            tr.appendChild(tdPickup);
+            tr.appendChild(tdTrip);
+            tr.appendChild(tdEurKm);
+            tr.appendChild(tdEurHour);
+            tr.appendChild(tdZone);
+            tr.appendChild(tdDecision);
+
+            offersBody.appendChild(tr);
+          });
+        } else {
+          offersBody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--text-muted);">Sem ofertas recentes importadas.</td></tr>';
+        }
+      })
+      .catch(function (e) {
+        console.error("Failed to read sync results", e);
+        var body = document.getElementById("offers-body");
+        if (body) {
+          body.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--error);">Erro ao carregar dados do sincronizador.</td></tr>';
+        }
       });
   </script>
 </body>

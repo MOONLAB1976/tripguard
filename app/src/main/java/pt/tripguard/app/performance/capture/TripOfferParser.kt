@@ -51,12 +51,21 @@ object TripOfferParser {
 
         val cleanedText = cleanOverlayText(rawText)
         val normalizedText = normalizeRawText(cleanedText)
+        val sourceApp = detectSourceApp(normalizedText, sourceHint)
+
+        if (isTripActiveOrNavigation(normalizedText)) {
+            return ParseInspection(
+                offer = null,
+                sourceApp = sourceApp,
+                notes = listOf("trip-active-or-navigation-skipped")
+            )
+        }
+
         val lines = normalizedText
             .lines()
             .map { it.trim() }
             .filter { it.isNotBlank() }
 
-        val sourceApp = detectSourceApp(normalizedText, sourceHint)
         val notes = mutableListOf(
             "source-hint=${sourceHint.name}",
             "source-detected=${sourceApp.name}",
@@ -168,7 +177,7 @@ object TripOfferParser {
         notes += "uber-pickup-address=${pickupAddress != null}"
         notes += "uber-destination-address=${destinationAddress != null}"
 
-        if (pickupDistanceKm != null || tripDistanceKm != null || fare != null) {
+        if (fare != null && (pickupDistanceKm != null || tripDistanceKm != null)) {
             return TripOffer(
                 rawText = text,
                 sourceApp = SourceApp.UBER,
@@ -191,7 +200,7 @@ object TripOfferParser {
         notes += "uber-opportunity-match=${opportunityMatch != null}"
         notes += "uber-route-arrow=${opportunityRoute != null}"
 
-        if (opportunityMatch != null || opportunityRoute != null) {
+        if ((opportunityMatch != null || opportunityRoute != null) && (fare != null || opportunityMatch?.groupValues?.getOrNull(1)?.normalizeDecimal()?.toDoubleOrNull() != null)) {
             val opportunityFare = fare
                 ?: opportunityMatch?.groupValues?.getOrNull(1)?.normalizeDecimal()?.toDoubleOrNull()
             val ambiguousDistance = opportunityMatch?.groupValues?.getOrNull(2)?.normalizeDecimal()?.toDoubleOrNull()
@@ -508,5 +517,37 @@ object TripOfferParser {
         }
         
         return false
+    }
+
+    private fun isTripActiveOrNavigation(text: String): Boolean {
+        val lower = text.lowercase()
+        return lower.contains("dirija-se") ||
+               lower.contains("dirigir-se") ||
+               lower.contains("navegar") ||
+               lower.contains("navigate") ||
+               lower.contains("iniciar viagem") ||
+               lower.contains("iniciar a viagem") ||
+               lower.contains("start trip") ||
+               lower.contains("terminar viagem") ||
+               lower.contains("end trip") ||
+               lower.contains("recolher") ||
+               lower.contains("a recolher") ||
+               lower.contains("picking up") ||
+               lower.contains("pickup") ||
+               lower.contains("deixe o cliente") ||
+               lower.contains("drop off") ||
+               lower.contains("partilhar viagem") ||
+               lower.contains("share trip") ||
+               lower.contains("adicionar paragem") ||
+               lower.contains("add stop") ||
+               lower.contains("próxima paragem") ||
+               lower.contains("next stop") ||
+               lower.contains("viagem em curso") ||
+               lower.contains("trip in progress") ||
+               lower.contains("encontrar-se com") ||
+               lower.contains("meet rider") ||
+               lower.contains("meet client") ||
+               lower.contains("deslize para") ||
+               lower.contains("slide to")
     }
 }
