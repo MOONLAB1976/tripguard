@@ -47,7 +47,7 @@ Write-Host "A preparar ficheiros de release..."
 powershell -ExecutionPolicy Bypass -File (Join-Path $projectRoot "prepare-github-release.ps1") | Out-Host
 
 Write-Host "A enviar alteracoes do repositorio..."
-git add app\build.gradle.kts tripguard-update.json docs\index.html site\index.html release\tripguard-update.json
+git add -A
 $pending = git diff --cached --name-only
 if ($pending) {
     git commit -m "Publish TripGuard $versionName" | Out-Host

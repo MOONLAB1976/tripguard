@@ -34,6 +34,15 @@ Base Android app for reading Uber and Bolt offer screens through Accessibility a
 - Parsing is generic and still needs tuning against the real Uber or Bolt offer screens.
 - The history analysis is heuristic for now, not yet trained on your true profit outcomes.
 - Address parsing still needs tuning against your real offer screens.
+- Distribution is still in private validation. See `TRUST_DISTRIBUTION.md` before Play Store or external testing.
+
+## App trust and diagnostics
+
+- The app now shows installed version, accessibility status, overlay status and diagnostic readiness.
+- `Enviar relatorio para o PC` creates a shareable Markdown report through Android `FileProvider`.
+- Reports avoid raw screen text and full addresses by default.
+- Android backup is disabled to reduce exposure of local trip history.
+- Future AI/API advice should stay opt-in and redact trip details unless the user explicitly shares them.
 
 ## Why this structure
 
@@ -68,13 +77,4 @@ The next useful milestone is to capture 3 to 5 real offer screens from your phon
 3. Capture real offer text from Uber or Bolt.
 4. Refine the parser for the exact layout you see on screen.
 5. Add trip history and zone scoring.
-
-## GitHub updates
-
-The app now supports checking a remote `tripguard-update.json` file and downloading a newer APK from GitHub.
-
-Useful files:
-
-- `tripguard-update.json`
-- `prepare-github-release.ps1`
-- `GITHUB_UPDATE_SETUP.md`
+6. Run the release checklist in `TRUST_DISTRIBUTION.md`.

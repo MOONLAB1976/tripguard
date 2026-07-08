@@ -1,5 +1,5 @@
 $projectRoot = "E:\Claude\com.mystrodriver\tripguard"
-$apkSource = Join-Path $projectRoot "app\build\outputs\apk\debug\app-universal-debug.apk"
+$apkSource = Join-Path $projectRoot "app\build\outputs\apk\debug\app-debug.apk"
 $releaseDir = Join-Path $projectRoot "release"
 $apkTarget = Join-Path $releaseDir "TripGuard-latest.apk"
 $jsonSource = Join-Path $projectRoot "tripguard-update.json"
