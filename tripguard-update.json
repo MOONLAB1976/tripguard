@@ -1,6 +1,7 @@
 ﻿{
-  "versionCode": 20,
-  "versionName": "0.2.15",
-  "apkUrl": "https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk",
-  "notes": "Versao publicada automaticamente a partir do projeto local."
+    "publishedAt":  "2026-07-09 10:20",
+    "notes":  "v0.2.18: Correcao critica - metricas do overlay (EUR/h, EUR/km) ja nao sao lidas como tarifa da viagem. Melhorias no parser: filtro de ecras GPS, portagem, viagem longa, mapa Uber, detecao de paragens.",
+    "versionCode":  23,
+    "versionName":  "0.2.18",
+    "apkUrl":  "https://github.com/MOONLAB1976/tripguard/releases/latest/download/TripGuard-latest.apk"
 }
