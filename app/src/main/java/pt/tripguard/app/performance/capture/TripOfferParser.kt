@@ -32,8 +32,17 @@ object TripOfferParser {
         "€/km", "€/h", "eur/km", "eur/h", "propostas", "turno", "hoje", "médias", "medias"
     )
     private val uberBlockedFareHints = listOf(
-        "incluidos pela recolha", "incluídos pela recolha", "pickup", "km", "hora", "%"
+        "incluidos pela recolha", "incluídos pela recolha",
+        "pickup", "km", "hora", "%",
+        // Overlays do Economy / cartões secundários
+        "portagem", "líquidos", "liquidos", "fora do alcance",
+        // Métricas do próprio overlay TripGuard (€/h, €/km) que a acessibilidade pode capturar
+        "€/h", "€/km", "eur/h", "eur/km", "/h", "/km"
     )
+    // Padrão "19.2 km · 19 min" que aparece no texto do mapa do Uber — não é distância de viagem
+    private val uberMapTextPattern = Regex("""\d+[.,]?\d*\s*km\s*[\u00B7\u2022|]\s*\d+\s*min""", RegexOption.IGNORE_CASE)
+    // Padrão "1 paragem" / "2 paragens" em viagens com múltiplas paragens
+    private val uberStopsPattern = Regex("""(\d+)\s+paragens?""", RegexOption.IGNORE_CASE)
     private val pickupHints = listOf("pickup", "recolha", "pick up", "apanhar", "distancia")
     private val destinationHints = listOf("destination", "dropoff", "destino", "chegada", "drop off")
 
@@ -154,11 +163,21 @@ object TripOfferParser {
             tripDistanceKm = tripMatch.groupValues.getOrNull(4)?.normalizeDecimal()?.toDoubleOrNull()
         }
 
-        val durations = durationPattern.findAll(text)
+        // Filtrar linhas com "viagem longa (mais de X min)" ANTES do fallback de durações
+        // para evitar que o badge informativo seja lido como duração de viagem
+        val textForFallback = text.lines()
+            .filter { line -> !line.contains("viagem longa", ignoreCase = true) }
+            .joinToString("\n")
+
+        // Filtrar padrão "X km · Y min" que aparece no texto do mapa do Uber
+        // para evitar que distâncias do mapa sejam lidas como distância de viagem
+        val textForKmFallback = uberMapTextPattern.replace(textForFallback, "")
+
+        val durations = durationPattern.findAll(textForFallback)
             .map { match -> match.toDurationMinutes(1, 2) }
             .toList()
 
-        val distances = kmPattern.findAll(text)
+        val distances = kmPattern.findAll(textForKmFallback)
             .mapNotNull { match -> match.groupValues.getOrNull(1)?.normalizeDecimal()?.toDoubleOrNull() }
             .toList()
 
@@ -167,9 +186,12 @@ object TripOfferParser {
         if (tripDurationMin == null) tripDurationMin = durations.getOrNull(1)
         if (tripDistanceKm == null) tripDistanceKm = distances.getOrNull(1)
 
+        val stopsCount = uberStopsPattern.find(text)?.groupValues?.getOrNull(1)?.toIntOrNull()
+
         notes += "uber-durations-size=${durations.size}"
         notes += "uber-distances-size=${distances.size}"
         notes += "uber-fare=${fare?.format2() ?: "?"}"
+        notes += "uber-stops=${stopsCount ?: 0}"
 
         val pickupAddress = extractUberPickupAddress(lines) ?: lines.firstOrNull { it.containsPostalOrStreetShape() }?.cleanAddressLine()
         val destinationAddress = extractUberDestinationAddress(lines) ?: lines.filter { it.containsPostalOrStreetShape() && it.cleanAddressLine() != pickupAddress }.firstOrNull()?.cleanAddressLine()
@@ -189,7 +211,8 @@ object TripOfferParser {
                 pickupAddress = pickupAddress,
                 destinationAddress = destinationAddress,
                 pickupPostalCode = pickupAddress.extractPostalPrefix(),
-                destinationPostalCode = destinationAddress.extractPostalPrefix()
+                destinationPostalCode = destinationAddress.extractPostalPrefix(),
+                stopsCount = stopsCount
             )
         }
 
@@ -485,7 +508,10 @@ object TripOfferParser {
         if (line.equals("Recusar", ignoreCase = true) || line.equals("Aceitar", ignoreCase = true)) {
             return true
         }
-        if (line.contains("EUR/h", ignoreCase = true) || line.contains("EUR/km", ignoreCase = true)) {
+        // Bloquear métricas de rentabilidade — tanto EUR/h como €/h (símbolo)
+        if (line.contains("EUR/h", ignoreCase = true) || line.contains("EUR/km", ignoreCase = true) ||
+            line.contains("€/h", ignoreCase = true) || line.contains("€/km", ignoreCase = true) ||
+            line.contains("/h", ignoreCase = true) || line.contains("/km", ignoreCase = true)) {
             return true
         }
         if (line.contains("tarifa total", ignoreCase = true) || line.contains("por hora", ignoreCase = true) || line.contains("por km", ignoreCase = true)) {
@@ -548,6 +574,13 @@ object TripOfferParser {
                lower.contains("meet rider") ||
                lower.contains("meet client") ||
                lower.contains("deslize para") ||
-               lower.contains("slide to")
+               lower.contains("slide to") ||
+               // Ecrã de navegação GPS: instrução de distância em metros sem cartão de oferta
+               // Ex: "Loja CTT • 70 m" ou "Rua Mouzinho de Albuquerque • 40 m"
+               // Detecta: texto com "\d+ m" (metros) mas SEM "Viagem de" nem "de distância"
+               (lower.contains(Regex("""\b\d+\s*m\b"""))) &&
+               !lower.contains("viagem de") &&
+               !lower.contains("de distancia") &&
+               !lower.contains("de dist\u00e2ncia")
     }
 }

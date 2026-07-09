@@ -11,7 +11,8 @@ data class TripOffer(
     val pickupAddress: String?,
     val destinationAddress: String?,
     val pickupPostalCode: String?,
-    val destinationPostalCode: String?
+    val destinationPostalCode: String?,
+    val stopsCount: Int? = null  // "1 paragem" / "2 paragens" — paragens intermédias
 ) {
     fun totalDistanceKm(): Double? {
         val total = listOfNotNull(pickupDistanceKm, tripDistanceKm).sum()
@@ -25,12 +26,18 @@ data class TripOffer(
 
     fun eurPerKm(): Double? {
         val fare = fareEur ?: return null
-        val distance = totalDistanceKm() ?: return null
-        return fare / distance.coerceAtLeast(0.1)
+        // Need at least trip distance to compute a meaningful EUR/km.
+        // Using only pickup distance would give wildly inflated values.
+        val tripKm = tripDistanceKm ?: return null
+        val total = (pickupDistanceKm ?: 0.0) + tripKm
+        return fare / total.coerceAtLeast(0.1)
     }
 
     fun eurPerHour(): Double? {
         val fare = fareEur ?: return null
+        // If we know the trip exists (distance known) but don't know trip duration,
+        // we cannot compute a reliable EUR/h — using only pickup time would inflate the value
+        if (tripDistanceKm != null && tripDurationMin == null) return null
         val durationMin = totalDurationMin() ?: return null
         return fare / (durationMin / 60.0).coerceAtLeast(0.1)
     }
